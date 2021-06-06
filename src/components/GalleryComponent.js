@@ -10,13 +10,15 @@ class Gallery extends Component {
         const showFilms = this.props.galleryData.map(gallery => {
             return(
                 <Col md="3">
-                    <Card className="galleryCardStyle my-3">
-                        <CardImg src={gallery.movieImg} alt={gallery.movieAlt} />
-                        <CardBody>
-                            <CardTitle tag="h5">{gallery.title}</CardTitle>
-                            <CardText tag="h6">{gallery.year}</CardText>
-                        </CardBody>
-                    </Card>
+                    <Link to={`/gallery/${gallery.id}`}>
+                        <Card className="galleryCardStyle my-3" key={gallery.id}>
+                            <CardImg src={gallery.movieImg} alt={gallery.movieAlt} />
+                            <CardBody>
+                                <CardTitle tag="h5">{gallery.title}</CardTitle>
+                                <CardText tag="h6">{gallery.year}</CardText>
+                            </CardBody>
+                        </Card>
+                    </Link>
                 </Col>
             );
         });
