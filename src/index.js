@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.scss';
+import "./fonts/LuckiestGuy-Regular.ttf";
+import "./fonts/Raleway-Regular.ttf";
+import "typeface-raleway";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

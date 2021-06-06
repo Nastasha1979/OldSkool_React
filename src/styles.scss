@@ -1,11 +1,25 @@
 //Font Imports
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
 //variables
-$logoFont: "Luckiest Guy, cursive";
-$secondaryFont: "'Raleway', sans-serif";
+$logoFont: "Luckiest Guy", cursive;
+$secondaryFont: "Raleway", sans-serif;
 
+/*******TO DO LIST ***************
+Fix Home Page Styling
+**********************************/
+
+//Global styles
+.logoStyle {
+    font-family: $logoFont;
+    font-size: 3rem;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
 
 
 //Header Component
@@ -30,16 +44,13 @@ $secondaryFont: "'Raleway', sans-serif";
     }
 }
 
-.logoStyle {
-    font-family: $logoFont;
-    font-size: 3rem;
-}
+
 
 //Home Video Component
 
 
 .myMovie {
-    position: absolute; 
+    position: fixed; 
     top: 0; 
     left: 0;
     min-width: 100%; 
@@ -51,32 +62,6 @@ $secondaryFont: "'Raleway', sans-serif";
     overflow: hidden;
 }
 
-
-
-.rowText1 {
-    position: relative;
-    font-family: $secondaryFont;
-    font-size: 4rem;
-    color: white;
-    height: 100%;
-    width: 75%;
-    transform: translateY(200%);
-    background-color: black;
-}
-
-.rowText2 {
-    position: relative;
-    font-family: $secondaryFont;
-    font-size: 4rem;
-    color: white;
-    height: 100%;
-    width: 75%;
-    transform: translateY(300%);
-    background-color: black;
-    left: 30%;
-    text-align: right;
-}
-
 .myImg {
     position: absolute;
     background-size: cover;
@@ -86,28 +71,70 @@ $secondaryFont: "'Raleway', sans-serif";
 
 }
 
-.rowText3 {
-    position: relative;
+.rowText1 {
     font-family: $secondaryFont;
-    font-size: 3rem;
+    font-size: 4rem;
     color: white;
     height: 100%;
-    width: 75%;
-    transform: translateY(25%);
+    width: 100%;
     background-color: black;
-    left: 0;
-    
 }
 
-.rowText4 {
-    position: relative;
+.rowText2 {
+   
     font-family: $secondaryFont;
-    font-size: 3rem;
+    font-size: 4rem;
     color: white;
     height: 100%;
-    width: 75%;
-    transform: translateY(175%);
+    width: 100%;
     background-color: black;
-    left: 30%;
     text-align: right;
+}
+
+
+
+
+//Footer
+
+.site-footer {
+    position:absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    .socialLinks {
+        color: white;
+    }
+    li {
+        display: inline;
+    }
+}
+
+
+
+
+
+//gallery
+.galleryCardStyle {
+    clear: both;
+    img {
+    height: 30rem;
+    width: 100%;
+    }
+}
+
+.galleryContainerStyles {
+    background-color: black;
+    height: 100%;
+    
+    .row {
+        text-align: center;
+        margin: auto;
+    }
+
+    h1, h2 {
+        color: white;
+        font-family: $secondaryFont;   
+    }
 }

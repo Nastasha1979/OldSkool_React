@@ -27,7 +27,7 @@ class Header extends Component {
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                                 <NavItem>
-                                    <Link to="/">Gallery</Link>
+                                    <Link to="/gallery">Gallery</Link>
                                 </NavItem>
                             </Nav>
                         </Collapse>
