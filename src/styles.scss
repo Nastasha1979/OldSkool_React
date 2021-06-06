@@ -1,0 +1,113 @@
+//Font Imports
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+//variables
+$logoFont: "Luckiest Guy, cursive";
+$secondaryFont: "'Raleway', sans-serif";
+
+
+
+//Header Component
+.navbarStyle {
+    background-color: black;
+}
+
+.navbarStyle{
+     
+    .navbar-collapse {
+    justify-content: end;
+    color: white;
+    padding-right: 3rem;
+    }
+    a {
+        font-family: $secondaryFont;
+        color: white;
+        font-size: 1.5rem;
+    }
+    .navbar-brand {
+        margin: auto;
+    }
+}
+
+.logoStyle {
+    font-family: $logoFont;
+    font-size: 3rem;
+}
+
+//Home Video Component
+
+
+.myMovie {
+    position: absolute; 
+    top: 0; 
+    left: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto; 
+    z-index: -100;
+    background-size: cover;
+    overflow: hidden;
+}
+
+
+
+.rowText1 {
+    position: relative;
+    font-family: $secondaryFont;
+    font-size: 4rem;
+    color: white;
+    height: 100%;
+    width: 75%;
+    transform: translateY(200%);
+    background-color: black;
+}
+
+.rowText2 {
+    position: relative;
+    font-family: $secondaryFont;
+    font-size: 4rem;
+    color: white;
+    height: 100%;
+    width: 75%;
+    transform: translateY(300%);
+    background-color: black;
+    left: 30%;
+    text-align: right;
+}
+
+.myImg {
+    position: absolute;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    left: 0;
+
+}
+
+.rowText3 {
+    position: relative;
+    font-family: $secondaryFont;
+    font-size: 3rem;
+    color: white;
+    height: 100%;
+    width: 75%;
+    transform: translateY(25%);
+    background-color: black;
+    left: 0;
+    
+}
+
+.rowText4 {
+    position: relative;
+    font-family: $secondaryFont;
+    font-size: 3rem;
+    color: white;
+    height: 100%;
+    width: 75%;
+    transform: translateY(175%);
+    background-color: black;
+    left: 30%;
+    text-align: right;
+}
