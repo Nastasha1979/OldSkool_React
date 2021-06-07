@@ -128,6 +128,9 @@ a {
 .galleryContainerStyles {
     background-color: black;
     height: 100%;
+    .breadcrumb-item > a {
+        color: white;
+    }
     
     .row {
         text-align: center;
@@ -147,12 +150,14 @@ a {
 //Movie Detail
 
 .movieDetailStyles {
+    background-color: black;
+    color: white;
     .media-left {
         width: 100%;
     }
     img {
         height: 50rem;
-        width: 100%;
+        width: 25%;
         
     }
 
@@ -163,5 +168,22 @@ a {
     table {
         width: 50%;
         justify-content: center;
+        color: white;
+    }
+}
+
+//Video Player
+
+.videoPlayerStyles {
+    background-color: black;
+    font-family: $secondaryFont;
+    video {
+        width: 100%;
+        height: 100vh;
+    }
+
+    h1 {
+        text-align: center;
+        color: white;
     }
 }

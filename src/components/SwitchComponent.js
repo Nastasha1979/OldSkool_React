@@ -4,6 +4,7 @@ import Header from "./HeaderComponent";
 import HomeVideo from "./HomeVideoComponent"; 
 import Footer from "./FooterComponent";
 import MovieDetailComponent from "./MovieDetailComponent";
+import VideoPlayer from "./VideoPlayerComponent";
 import Gallery from "./GalleryComponent";
 import GALLERYDATA from "../shared/gallery";
 import MOVIEDETAILDATA from "../shared/movieDetail"
@@ -25,13 +26,20 @@ class SwitchComponent extends Component {
             );
         };
 
+        const moviePlay = ({match}) => {
+            return(
+                <VideoPlayer movieData={this.state.movieDetail.filter(movieD => movieD.videoId === +match.params.videoId)[0]} />
+            );
+        };
+
         return(
             <React.Fragment>
                 <Header />
                 <Switch>
-                    <Route exact path="/" component={HomeVideo} />
+                    <Route exact path="/home" component={HomeVideo} />
                     <Route exact path="/gallery" render={() => <Gallery galleryData={this.state.galleryData} />} />
                     <Route exact path="/gallery/:movieId" component={movieData} />
+                    <Route exact path="/gallery/detail/:videoId" component={moviePlay} />
                     <Redirect path="/" /> 
                 </Switch>
                 <Footer />

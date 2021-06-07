@@ -13,7 +13,8 @@ const MOVIEDETAILDATA = [
         cinematographer: "Joseph Walker",
         editor: "Gene Havlick",
         artDirector: "Lionel Banks",
-        videoUrl: "/assets/videos/HisGirlFriday.mp4",
+        videoId: 10,
+        videoUrl: "/assets/HisGirlFriday.mp4",
         videoAlt: "His Girl Friday Film"
 
     },
@@ -31,7 +32,8 @@ const MOVIEDETAILDATA = [
         cinematographer: "Carl E. Guthrie",
         editor: "Roy V. Livingston",
         artDirector: "Dave Milton",
-        videoUrl: "/assets/videos/HouseOnHauntedHill.mp4",
+        videoId: 11,
+        videoUrl: "/assets/HouseOnHauntedHill.mp4",
         videoAlt: ""
 
     },
@@ -49,7 +51,8 @@ const MOVIEDETAILDATA = [
         cinematographer: "Jacques R. Marquette",
         editor: "Anthony Carras",
         artDirector: "Stanley Watson",
-        videoUrl: "/assets/videos/LastWomenOnEarth.mp4",
+        videoId: 12,
+        videoUrl: "/assets/LastWomenOnEarth.mp4",
         videoAlt: "Last Woman on Earth Film"
 
     },
@@ -67,7 +70,8 @@ const MOVIEDETAILDATA = [
         cinematographer: "Ted Tetzlaff",
         editor: "Ted J. Kent, Russel F. Schoengarth",
         artDirector: "Charles D. Hall",
-        videoUrl: "/assets/videos/MyManGodfrey.mp4",
+        videoId: 13,
+        videoUrl: "/assets/MyManGodfrey.mp4",
         videoAlt: "My Man Godfrey Film"
 
     },
@@ -85,7 +89,8 @@ const MOVIEDETAILDATA = [
         cinematographer: "George A. Romero",
         editor: "George A. Romero",
         artDirector: "Charles O'Data",
-        videoUrl: "/assets/videos/NightOfTheLivingDead.mp4",
+        videoId: 14,
+        videoUrl: "/assets/NightOfTheLivingDead.mp4",
         videoAlt: "Night of the Living Dead Film"
 
     },
@@ -103,7 +108,8 @@ const MOVIEDETAILDATA = [
         cinematographer: "Milton Bridenbecker, Virgil Miller, Charles Van Enger",
         editor: "Edward Curtiss, Maurice Pivar, Gilmore Walker",
         artDirector: "Charles D. Hall, Elmer Sheeley",
-        videoUrl: "/assets/videos/ThePhantomOfTheOpera.mp4",
+        videoId: 15,
+        videoUrl: "/assets/ThePhantomOfTheOpera.mp4",
         videoAlt: "The Phantom of the Opera Film"
 
     },
@@ -121,7 +127,8 @@ const MOVIEDETAILDATA = [
         cinematographer: "William C. Foster, Roland Totheroh",
         editor: "Charles Chaplin",
         artDirector: "George Cleethrope",
-        videoUrl: "/assets/videos/TheAdventurer.mp4",
+        videoId: 16,
+        videoUrl: "/assets/TheAdventurer.mp4",
         videoAlt: "The Adventurer Film"
 
     },
@@ -139,7 +146,8 @@ const MOVIEDETAILDATA = [
         cinematographer: "Stephen Hajnal",
         editor: "Marc Anderson",
         artDirector: "Paul Fanning",
-        videoUrl: "/assets/videos/TheBrainThatWouldNotDie1962.mp4",
+        videoId: 17,
+        videoUrl: "/assets/TheBrainThatWouldNotDie1962.mp4",
         videoAlt: "The Brain that Wouldn't Die Film"
 
     },
@@ -157,7 +165,8 @@ const MOVIEDETAILDATA = [
         cinematographer: "Nicholas Musuraca",
         editor: "Douglas Stewart",
         artDirector: "Albert S. D'Agostino, Walter E. Keller",
-        videoUrl: "/assets/videos/TheHitchHiker.mp4",
+        videoId: 18,
+        videoUrl: "/assets/TheHitchHiker.mp4",
         videoAlt: "The Hitch Hiker Film"
 
     },
@@ -175,6 +184,7 @@ const MOVIEDETAILDATA = [
         cinematographer: "Arthur Edeson",
         editor: "George McGuire",
         artDirector: "Milton Menasco",
+        videoId: 19,
         videoUrl: "/assets/videos/LostWorld.mp4",
         videoAlt: "The Lost World Film"
 
@@ -193,7 +203,8 @@ const MOVIEDETAILDATA = [
         cinematographer: "Flemming Olsen, Arkadi Klimov",
         editor: "Bob Collins",
         artDirector: "Vittorio Ferroni",
-        videoUrl: "/assets/videos/VoyageToThePlanetofPrehistoricWomen.mp4",
+        videoId: 110,
+        videoUrl: "/assets/VoyageToThePlanetofPrehistoricWomen.mp4",
         videoAlt: "Voyage to the Planet of Pre-historic Women Film"
 
     }
