@@ -36,7 +36,7 @@ function VideoPlayer(props) {
                                     <Link to="/gallery">Gallery</Link>
                                 </BreadcrumbItem>
                                 <BreadcrumbItem>
-                                    <Link to="/gallery/:movieId">{props.movieData.title} Detail</Link>
+                                    <Link to={`/gallery/${props.movieData.id}`}>{props.movieData.title} Detail</Link>
                                 </BreadcrumbItem>
                                 <BreadcrumbItem>
                                     <Link active>{props.movieData.title}</Link>

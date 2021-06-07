@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Header from "./HeaderComponent";
 import HomeVideo from "./HomeVideoComponent"; 
-import Footer from "./FooterComponent";
+import About from "./AboutComponent";
 import MovieDetailComponent from "./MovieDetailComponent";
 import VideoPlayer from "./VideoPlayerComponent";
 import Gallery from "./GalleryComponent";
@@ -40,9 +40,10 @@ class SwitchComponent extends Component {
                     <Route exact path="/gallery" render={() => <Gallery galleryData={this.state.galleryData} />} />
                     <Route exact path="/gallery/:movieId" component={movieData} />
                     <Route exact path="/gallery/detail/:videoId" component={moviePlay} />
-                    <Redirect path="/" /> 
+                    <Route exact path="/about" component={About} />
+                    <Redirect path="/home" /> 
                 </Switch>
-                <Footer />
+                {/* <Footer /> */}
             </React.Fragment>
         );
     }

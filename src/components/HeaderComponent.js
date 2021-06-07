@@ -22,12 +22,18 @@ class Header extends Component {
             <React.Fragment>
                 <header>
                     <Navbar dark expand="md" className="navbarStyle">
-                            <NavbarBrand href="/" className="logoStyle">OldSkool</NavbarBrand>
+                            <Link href="/home" className="logoStyle">OldSkool</Link>
                         <NavbarToggler onClick={this.toggleNav} />
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                                 <NavItem>
-                                    <Link to="/gallery">Gallery</Link>
+                                    <Link to="/gallery"> Gallery </Link>   
+                                </NavItem>
+                                <NavItem className="d-none d-md-block">
+                                    <span > | </span>
+                                </NavItem>
+                                <NavItem>
+                                    <Link to="/about"> About </Link>
                                 </NavItem>
                             </Nav>
                         </Collapse>

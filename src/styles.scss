@@ -1,5 +1,5 @@
 //Font Imports
-// @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
 //variables
@@ -12,13 +12,18 @@ Fix Home Page Styling
 
 //Global styles
 .logoStyle {
-    font-family: $logoFont;
+    font-family: 'Luckiest Guy', cursive;
     font-size: 3rem;
+    color: white;
 }
 
 a {
 
     text-decoration: none;
+}
+
+body {
+    background-color: black;
 }
 
 
@@ -34,13 +39,21 @@ a {
     color: white;
     padding-right: 3rem;
     }
-    a {
+    .nav-item {
         font-family: $secondaryFont;
         color: white;
         font-size: 1.5rem;
+        a {
+            color: white;
+        }
+        
     }
     .navbar-brand {
         margin: auto;
+    }
+    span {
+        color: white;
+        font-size: 1.5rem;
     }
 }
 
@@ -68,10 +81,12 @@ a {
     height: 100%;
     width: 100%;
     left: 0;
+    right: 0;
 
 }
 
 .rowText1 {
+    
     font-family: $secondaryFont;
     font-size: 4rem;
     color: white;
@@ -97,17 +112,30 @@ a {
 //Footer
 
 .site-footer {
-    position:absolute;
-    left: 0;
-    right: 0;
+    height: 550px;
     width: 100%;
     background-color: black;
     color: white;
+    .row {
+        height: 33%;
+    }
     .socialLinks {
         color: white;
     }
     li {
         display: inline;
+    }
+    p {
+        font-size: 2rem;
+        font-family: $secondaryFont; 
+    }
+    address, section {
+        font-size: 3rem;
+        font-family: $secondaryFont;
+    }
+
+    .termsStuff {
+        font-size: 2rem;
     }
 }
 
@@ -156,8 +184,7 @@ a {
         width: 100%;
     }
     img {
-        height: 50rem;
-        width: 25%;
+        height: 35rem;
         
     }
 
@@ -169,7 +196,15 @@ a {
         width: 50%;
         justify-content: center;
         color: white;
+        tr > td:first-child {
+            font-weight: bold;
+        }
     }
+
+    i {
+        color: white;
+    }
+
 }
 
 //Video Player

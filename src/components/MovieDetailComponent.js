@@ -8,21 +8,18 @@ function RenderDetail({movieDetail}) {
     return(        
         
         <React.Fragment>
+            
             <Row key={movieDetail.id}>
-                <div className="text-center">
-                    <h1>{movieDetail.title} - {movieDetail.year}</h1>
-                </div>
                 <Col xs="12">
-                    <Media>
-                        <Media left>
-                            <Media object src={movieDetail.movieImg} alt={movieDetail.movieAlt} />
-                        </Media>
+                    <Media className="d-flex">
                         
-                        <Media body className="text-center">
-                            <h1>{movieDetail.title} - {movieDetail.year}</h1>  
-                            <h3>{movieDetail.director}</h3>
-                            <p>{movieDetail.longDescription}</p>
-                            <Table>
+                            <Media object src={movieDetail.movieImg} alt={movieDetail.movieAlt} />
+                        
+                        <Media body >
+                            <h1 className="text-center">{movieDetail.title} - {movieDetail.year}</h1>  
+                            <h3 className="text-center">Director: {movieDetail.director}</h3>
+                            <p className="text-center">{movieDetail.longDescription}</p>
+                            <Table className="m-auto">
                                 <tbody>
                                     <tr>
                                         <td>Director</td>
@@ -54,10 +51,13 @@ function RenderDetail({movieDetail}) {
                                     </tr>
                                 </tbody>
                             </Table>
+                            <div className="text-center my-3">
+                                <Link to={`/gallery/detail/${movieDetail.videoId}`}><i className="fa fa-play-circle fa-5x" /></Link>
+                            </div>
                         </Media>
                     </Media>
                 </Col>
-                <Link to={`/gallery/detail/${movieDetail.videoId}`} className="btn btn-primary">Watch Movie</Link>
+                
             </Row>   
         </React.Fragment> 
             

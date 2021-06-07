@@ -52,7 +52,7 @@ const MOVIEDETAILDATA = [
         editor: "Anthony Carras",
         artDirector: "Stanley Watson",
         videoId: 12,
-        videoUrl: "/assets/LastWomenOnEarth.mp4",
+        videoUrl: "/assets/LastWomanOnEarth.mp4",
         videoAlt: "Last Woman on Earth Film"
 
     },

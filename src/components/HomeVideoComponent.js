@@ -9,11 +9,11 @@ function HomeVideo() {
         <Container fluid >
 
             <div>
-                <Row className="rowText1">
-                    <Col md="8">
+                {/* <Row className="rowText1">
+                    <Col md="12">
                         <p>Join a community of classic film lovers.</p>
                     </Col>
-                </Row>
+                </Row> */}
                 {viewWidth >= 768 ?
                     <video loop autoPlay muted src="/assets/HisGirlFridayTrim2.mp4"  className="myMovie" />
                 :

@@ -10,15 +10,18 @@ class Gallery extends Component {
         const showFilms = this.props.galleryData.map(gallery => {
             return(
                 <Col md="3">
-                    <Link to={`/gallery/${gallery.id}`}>
+                    
                         <Card className="galleryCardStyle my-3" key={gallery.id}>
-                            <CardImg src={gallery.movieImg} alt={gallery.movieAlt} />
+                            <Link to={`/gallery/${gallery.id}`}>
+                                <CardImg src={gallery.movieImg} alt={gallery.movieAlt} />
+                            </Link>
                             <CardBody>
                                 <CardTitle tag="h5">{gallery.title}</CardTitle>
                                 <CardText tag="h6">{gallery.year}</CardText>
+                                <Link to={`/gallery/detail/1${gallery.id}`}><i className="fa fa-play-circle" /></Link>
                             </CardBody>
                         </Card>
-                    </Link>
+                    
                 </Col>
             );
         });
@@ -53,7 +56,7 @@ class Gallery extends Component {
                                 <Col xs="4" className="">     
                                     <Form className=" pb-4">
                                             <Input className="form-control mr-2 d-inline" type="search" placeholder="Search" aria-label="Search" />
-                                            <Button className="btn d-inline" type="submit"><i className="fas fa-search" /></Button> 
+                                            <Button className="d-inline" type="submit"><i className="fa fa-search" /></Button> 
                                     </Form> 
                                 </Col>              
                             </Row>
