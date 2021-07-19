@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Nav, Navbar, NavbarToggler, Navbrand, NavItem, NavbarBrand, Collapse } from "reactstrap";
+import { Nav, Navbar, NavbarToggler, Navbrand, NavItem, NavbarBrand, Collapse, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Header extends Component {
     constructor(props) {
@@ -21,22 +22,22 @@ class Header extends Component {
         return(
             <React.Fragment>
                 <header>
-                    <Navbar dark expand="md" className="navbarStyle">
+                    <Navbar dark expand="large" className="navbarStyle">
                             <Link href="/home" className="logoStyle">OldSkool</Link>
-                        <NavbarToggler onClick={this.toggleNav} />
-                        <Collapse isOpen={this.state.isNavOpen} navbar>
-                            <Nav navbar>
-                                <NavItem>
-                                    <Link to="/gallery"> Gallery </Link>   
-                                </NavItem>
-                                <NavItem className="d-none d-md-block">
-                                    <span > | </span>
-                                </NavItem>
-                                <NavItem>
-                                    <Link to="/about"> About </Link>
-                                </NavItem>
-                            </Nav>
-                        </Collapse>
+                        <Dropdown isOpen={this.state.isNavOpen} toggle={this.toggleNav} className="dropdown">
+                            <DropdownToggle>
+                                <NavbarToggler onClick={this.toggleNav} />
+                            </DropdownToggle>
+                            <DropdownMenu right>
+                                <DropdownItem><Link to="/home">Home</Link></DropdownItem>
+                                <DropdownItem><Link to="/gallery">Gallery</Link></DropdownItem>
+                                <DropdownItem><Link to="/">Articles</Link></DropdownItem>
+                                <DropdownItem><Link to="/events">Events</Link></DropdownItem>
+                                <DropdownItem><Link to="/about">About</Link></DropdownItem>
+                                <DropdownItem divider />
+                                <DropdownItem><Link to="/">Sign In</Link></DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
                     </Navbar>
                 </header>
             </React.Fragment>

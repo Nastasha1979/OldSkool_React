@@ -1,6 +1,6 @@
 //Font Imports
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
 //variables
 $logoFont: "Luckiest Guy", cursive;
@@ -15,6 +15,7 @@ Fix Home Page Styling
     font-family: 'Luckiest Guy', cursive;
     font-size: 3rem;
     color: white;
+    padding-left: 2rem;
 }
 
 a {
@@ -32,29 +33,14 @@ body {
     background-color: black;
 }
 
-.navbarStyle{
-     
-    .navbar-collapse {
+
+.dropdown {
     justify-content: end;
-    color: white;
-    padding-right: 3rem;
+    padding-right: 2rem;
+    > button {
+        background-color: transparent;
     }
-    .nav-item {
-        font-family: $secondaryFont;
-        color: white;
-        font-size: 1.5rem;
-        a {
-            color: white;
-        }
-        
-    }
-    .navbar-brand {
-        margin: auto;
-    }
-    span {
-        color: white;
-        font-size: 1.5rem;
-    }
+
 }
 
 
@@ -175,11 +161,16 @@ body {
     }
 }
 
+.carouselImg {
+    height: 375px;
+    width: 90%;
+}
 //Movie Detail
 
 .movieDetailStyles {
     background-color: black;
     color: white;
+    font-family: $secondaryFont;
     .media-left {
         width: 100%;
     }
@@ -222,3 +213,39 @@ body {
         color: white;
     }
 }
+
+//Events Home
+
+.eventsContainer {
+    font-size: 36px;
+    .breadcrumb-item > a {
+        color: white;
+    }
+    .breadcrumb {
+        font-size: 12px;
+        font-family: $secondaryFont;
+    }
+    .eventTitle {
+        color: "#fff"
+    }
+}
+
+.head {
+    color: "white";
+}
+
+.cardContainer {
+    font-family: $secondaryFont;
+    > .card-body {
+        margin: auto;
+        text-align: "center";
+        font-weight: "bold";
+        > .card-text {
+            margin: auto;
+            text-align: "center";
+            font-weight: "bold";
+        }
+    }
+    
+}
+

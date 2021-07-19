@@ -5,16 +5,21 @@ import HomeVideo from "./HomeVideoComponent";
 import About from "./AboutComponent";
 import MovieDetailComponent from "./MovieDetailComponent";
 import VideoPlayer from "./VideoPlayerComponent";
+import Events from "./EventsHomeComponent";
+import EventDetail from "./EventDetailComponent";
 import Gallery from "./GalleryComponent";
 import GALLERYDATA from "../shared/gallery";
-import MOVIEDETAILDATA from "../shared/movieDetail"
+import MOVIEDETAILDATA from "../shared/movieDetail";
+import EVENTSDATA from "../shared/events";
+
 
 class SwitchComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
             galleryData: GALLERYDATA,
-            movieDetail: MOVIEDETAILDATA
+            movieDetail: MOVIEDETAILDATA,
+            eventsData: EVENTSDATA
         }
     }
 
@@ -32,6 +37,14 @@ class SwitchComponent extends Component {
             );
         };
 
+        const eventGo = ({match}) => {
+            console.log(+match.params.eventId);
+            return(
+                
+                <EventDetail eventsData={this.state.eventsData.filter(eventD => eventD.id === +match.params.eventId)[0]} />
+            );
+        }
+
         return(
             <React.Fragment>
                 <Header />
@@ -41,6 +54,8 @@ class SwitchComponent extends Component {
                     <Route exact path="/gallery/:movieId" component={movieData} />
                     <Route exact path="/gallery/detail/:videoId" component={moviePlay} />
                     <Route exact path="/about" component={About} />
+                    <Route path="/events" render={() => <Events eventsData={this.state.eventsData} />} />
+                    <Route exact path="/events/:eventId" component={eventGo} />
                     <Redirect path="/home" /> 
                 </Switch>
                 {/* <Footer /> */}

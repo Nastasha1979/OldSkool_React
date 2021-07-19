@@ -19,7 +19,7 @@ function RenderDetail({movieDetail}) {
                             <h1 className="text-center">{movieDetail.title} - {movieDetail.year}</h1>  
                             <h3 className="text-center">Director: {movieDetail.director}</h3>
                             <p className="text-center">{movieDetail.longDescription}</p>
-                            <Table className="m-auto">
+                            <Table className="m-auto d-none d-md-block">
                                 <tbody>
                                     <tr>
                                         <td>Director</td>
