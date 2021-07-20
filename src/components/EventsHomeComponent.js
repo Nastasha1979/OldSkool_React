@@ -27,11 +27,13 @@ function Events(props) {
                 <StackGrid
                     columnWidth={250}
                     gutterWidth={10}
+                    monitorImagesLoaded
                 >
                     {props.eventsData.map(event => {
                         return(
-                            <Link to={`/events/${event.id}`} key={event.id}>
-                                <Card  className="cardContainer">
+                            
+                                <Card  className="cardContainer" key={event.id}>
+                                    <Link to={`/events/${event.id}`}>
                                     <CardBody>
                                         <CardTitle tag="h3">{event.title}</CardTitle>
                                     </CardBody>
@@ -40,8 +42,9 @@ function Events(props) {
                                         <CardText tag="h4">{event.shortDescription}</CardText>
                                         <CardText tag="h4">{event.date} - {event.time}</CardText>
                                     </CardBody>
+                                    </Link>
                                 </Card>
-                            </Link>
+                            
                         );
                     })}
                 </StackGrid>    

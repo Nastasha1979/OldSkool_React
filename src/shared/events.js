@@ -12,7 +12,7 @@ const EventsData = [
     {
         id: 1,
         title: "Night of the Living Dead Watch Party",
-        shortDescription: "Come join us for a ight of frights",
+        shortDescription: "Come join us for a night of frights",
         date: "October 31, 2025",
         time: "8 - 1030pm CST",
         mainMovieImg: "/assets/NOTLD.jpg",

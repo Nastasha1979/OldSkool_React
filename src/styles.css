@@ -230,4 +230,12 @@ body {
   text-align: "center";
   font-weight: "bold";
 }
+
+.eventDetailContainer #overTitle {
+  color: "black";
+  font-size: "72px";
+  -webkit-transform: translateY(-100);
+          transform: translateY(-100);
+  margin: auto;
+}
 /*# sourceMappingURL=styles.css.map */

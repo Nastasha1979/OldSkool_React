@@ -38,12 +38,10 @@ class SwitchComponent extends Component {
         };
 
         const eventGo = ({match}) => {
-            console.log(+match.params.eventId);
             return(
-                
                 <EventDetail eventsData={this.state.eventsData.filter(eventD => eventD.id === +match.params.eventId)[0]} />
             );
-        }
+        };
 
         return(
             <React.Fragment>
@@ -54,7 +52,7 @@ class SwitchComponent extends Component {
                     <Route exact path="/gallery/:movieId" component={movieData} />
                     <Route exact path="/gallery/detail/:videoId" component={moviePlay} />
                     <Route exact path="/about" component={About} />
-                    <Route path="/events" render={() => <Events eventsData={this.state.eventsData} />} />
+                    <Route exact path="/events" render={() => <Events eventsData={this.state.eventsData} />} />
                     <Route exact path="/events/:eventId" component={eventGo} />
                     <Redirect path="/home" /> 
                 </Switch>
