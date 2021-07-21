@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, CardImg, CardText, CardBody, CardTitle, Card
 import StackGrid from "react-stack-grid";
 import { Link } from "react-router-dom";
 
-//The link to the Event detail component is not working. Fix it
+
 
 function Events(props) {
     return(

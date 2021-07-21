@@ -20,6 +20,18 @@ function RenderVideo({movieData}){
     );
 }
 
+function Comments() {
+    return(
+        <Container fluid>
+            <Row>
+                <Col>
+                    <h1>Comments Section</h1>                
+                </Col>
+            </Row>
+        </Container>
+    );
+}
+
 function VideoPlayer(props) {
     if(props.movieData) {
     
@@ -44,7 +56,8 @@ function VideoPlayer(props) {
                             </Breadcrumb>
                         </Col>
                     </Row>
-                    {<RenderVideo movieData={props.movieData} />}
+                    <RenderVideo movieData={props.movieData} />
+                    <Comments />
                 </Container>
             </React.Fragment>
 

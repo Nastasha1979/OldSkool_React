@@ -31,7 +31,6 @@ class Header extends Component {
                             <DropdownMenu right>
                                 <DropdownItem><Link to="/home">Home</Link></DropdownItem>
                                 <DropdownItem><Link to="/gallery">Gallery</Link></DropdownItem>
-                                <DropdownItem><Link to="/">Articles</Link></DropdownItem>
                                 <DropdownItem><Link to="/events">Events</Link></DropdownItem>
                                 <DropdownItem><Link to="/about">About</Link></DropdownItem>
                                 <DropdownItem divider />

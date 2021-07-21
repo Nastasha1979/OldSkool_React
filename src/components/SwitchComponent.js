@@ -54,7 +54,7 @@ class SwitchComponent extends Component {
                     <Route exact path="/about" component={About} />
                     <Route exact path="/events" render={() => <Events eventsData={this.state.eventsData} />} />
                     <Route exact path="/events/:eventId" component={eventGo} />
-                    <Redirect path="/home" /> 
+                    <Redirect exact path="/home" /> 
                 </Switch>
                 {/* <Footer /> */}
             </React.Fragment>
