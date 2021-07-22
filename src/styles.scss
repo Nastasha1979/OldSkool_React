@@ -100,7 +100,7 @@ body {
 .site-footer {
     height: 550px;
     width: 100%;
-    background-color: black;
+    
     color: white;
     .row {
         height: 33%;
@@ -140,7 +140,7 @@ body {
 }
 
 .galleryContainerStyles {
-    background-color: black;
+    
     height: 100%;
     .breadcrumb-item > a {
         color: white;
@@ -214,6 +214,16 @@ body {
     }
 }
 
+
+
+.commentRender {
+    color: white;
+
+    .commentAvatar {
+        height: 50%
+    }
+}
+
 //Events Home
 
 .eventsContainer {
@@ -255,6 +265,22 @@ body {
         font-size: "72px";
         transform: translateY(-100);
         margin: auto;
+    }
+}
+
+//Register/Signin Modal
+.registerModalHeader {
+    background-color: black;
+    color: white;
+    
+}
+
+
+//WatchlistContainer
+.watchlistContainer {
+    > .row > .col-12 {
+        color: white;
+        font-family: "Raleway";
     }
 }
 

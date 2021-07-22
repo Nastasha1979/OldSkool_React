@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, Alert } from "reactstrap";
-
+import { baseUrl } from "../shared/baseUrl";
 
 
 function RenderTop({eventsData}) {
@@ -8,11 +8,11 @@ function RenderTop({eventsData}) {
         <React.Fragment>
             <Row>
                 <div style={{color:"black",  fontSize: "36px", transform: "translateY(300px)", textAlign: "center", fontWeight: "bold", border: "2px", borderRadius: "5px", backgroundColor: "white", boxShadow: "5px 3px 5px #3c3c3c"}} className="ml-3">{eventsData.title}<br/>{eventsData.date}<br/>{eventsData.time}</div>
-                <img className="eventImage1" src={eventsData.otherImages[1]} alt="Image 1" />
+                <img className="eventImage1" src={baseUrl + eventsData.otherImages[1]} alt="Image 1" />
             </Row>
             <Row>
-                <div style={{color:"black",  fontSize: "36px", transform: "translateY(230px)", textAlign: "center", fontWeight: "bold", border: "2px", borderRadius: "5px", backgroundColor: "white", boxShadow: "5px 3px 5px #3c3c3c" }} className="ml-3">{eventsData.shortDescription}</div>
-                <img className="eventImage1" src={eventsData.otherImages[2]} alt="Image 2"/>
+                <div style={{color:"black",  fontSize: "36px", transform: "translateY(230px)", textAlign: "center", fontWeight: "bold", border: "2px", borderRadius: "5px", backgroundColor: "white", boxShadow: "5px 3px 5px #3c3c3c" }} className="ml-3">{eventsData.longDescription}</div>
+                <img className="eventImage1" src={baseUrl + eventsData.otherImages[2]} alt="Image 2"/>
             </Row>
         </React.Fragment>
     );

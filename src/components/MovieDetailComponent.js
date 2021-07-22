@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Media, Container, Row, Col, Table, Breadcrumb, BreadcrumbItem, Fade } from "reactstrap";
 import { Link } from "react-router-dom";
-
+import { baseUrl } from "../shared/baseUrl";
 
 
 function RenderDetail({movieDetail}) {
@@ -13,7 +13,7 @@ function RenderDetail({movieDetail}) {
                 <Col xs="12">
                     <Media className="d-flex">
                         
-                            <Media object src={movieDetail.movieImg} alt={movieDetail.movieAlt} />
+                            <Media object src={baseUrl + movieDetail.movieImg} alt={movieDetail.movieAlt} />
                         
                         <Media body >
                             <h1 className="text-center">{movieDetail.title} - {movieDetail.year}</h1>  

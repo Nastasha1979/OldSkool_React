@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button, Breadcrumb, BreadcrumbItem } from "reactstrap";
 import StackGrid from "react-stack-grid";
 import { Link } from "react-router-dom";
+import { baseUrl } from "../shared/baseUrl";
 
 
 
@@ -37,7 +38,7 @@ function Events(props) {
                                     <CardBody>
                                         <CardTitle tag="h3">{event.title}</CardTitle>
                                     </CardBody>
-                                    <CardImg top width="100%" src={event.mainMovieImg} alt={event.mainMovieAlt} />
+                                    <CardImg top width="100%" src={baseUrl + event.mainMovieImg} alt={event.mainMovieAlt} />
                                     <CardBody>
                                         <CardText tag="h4">{event.shortDescription}</CardText>
                                         <CardText tag="h4">{event.date} - {event.time}</CardText>

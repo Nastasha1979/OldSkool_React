@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Container, Row, Col, Form, Input, Button, Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Link } from "react-router-dom";
+import { baseUrl } from "../shared/baseUrl";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -38,7 +39,13 @@ function GetFirstCarousel({galleryData}) {
             
         >
             {galleryData.filter(gallery => gallery.id < 6).map(gallery => {
-                return <div><Link to={`/gallery/${gallery.id}`}><img src={gallery.movieImg} className="carouselImg" /></Link></div>
+                return (
+                    <div>
+                        <Link to={`/gallery/${gallery.id}`}>
+                            <img src={baseUrl + gallery.movieImg} className="carouselImg" />
+                        </Link>
+                    </div>
+                );
             })}
         </Carousel>
     );
@@ -79,7 +86,7 @@ function GetSecondCarousel({galleryData}) {
             
         >
             {galleryData.filter(gallery => gallery.id > 5).map(gallery => {
-                return <div><img src={gallery.movieImg} className="carouselImg" /></div>
+                return <div><Link to={`/gallery/${gallery.id}`}><img src={baseUrl + gallery.movieImg} className="carouselImg" /></Link></div>
             })}
         </Carousel>
     );
@@ -87,12 +94,9 @@ function GetSecondCarousel({galleryData}) {
 
 
 class Gallery extends Component {
-    constructor(props) {
-        super(props);
-    }
+    
 
     render(props) {
-
         return(
             <React.Fragment>
                 <Container fluid className="galleryContainerStyles">
@@ -131,7 +135,7 @@ class Gallery extends Component {
                         </Col>
                     </Row>
                     <Row className="pb-2">
-                        <GetFirstCarousel galleryData={this.props.galleryData} />
+                        <GetFirstCarousel galleryData={this.props.galleryData.galleryData} />
                     </Row>
                     <Row className="py-2">
                         <Col>
@@ -139,7 +143,7 @@ class Gallery extends Component {
                         </Col>
                     </Row>
                     <Row className="pb-2">
-                        <GetSecondCarousel galleryData={this.props.galleryData} />
+                        <GetSecondCarousel galleryData={this.props.galleryData.galleryData} />
                     </Row>
                 </Container>
             </React.Fragment>

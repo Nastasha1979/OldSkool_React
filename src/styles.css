@@ -77,7 +77,6 @@ body {
 .site-footer {
   height: 550px;
   width: 100%;
-  background-color: black;
   color: white;
 }
 
@@ -117,7 +116,6 @@ body {
 }
 
 .galleryContainerStyles {
-  background-color: black;
   height: 100%;
 }
 
@@ -194,6 +192,14 @@ body {
   color: white;
 }
 
+.commentRender {
+  color: white;
+}
+
+.commentRender .commentAvatar {
+  height: 50%;
+}
+
 .eventsContainer {
   font-size: 36px;
 }
@@ -237,5 +243,15 @@ body {
   -webkit-transform: translateY(-100);
           transform: translateY(-100);
   margin: auto;
+}
+
+.registerModalHeader {
+  background-color: black;
+  color: white;
+}
+
+.watchlistContainer > .row > .col-12 {
+  color: white;
+  font-family: "Raleway";
 }
 /*# sourceMappingURL=styles.css.map */

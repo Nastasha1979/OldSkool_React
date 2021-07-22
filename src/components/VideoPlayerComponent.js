@@ -1,6 +1,8 @@
-import React from "react";
-import { Container, Row, Col, Breadcrumb, BreadcrumbItem } from "reactstrap";
+import React, { Component } from "react";
+import { Container, Row, Col, Breadcrumb, BreadcrumbItem, Media, Input, Button, Form, FormGroup } from "reactstrap";
 import { Link } from "react-router-dom";
+import Avatar from "react-avatar";
+import { baseUrl } from "../shared/baseUrl";
 
 function RenderVideo({movieData}){
     return(
@@ -12,7 +14,7 @@ function RenderVideo({movieData}){
             </Row>
             <Row>
                 <Col xs="12" className="embed-responsive embed-responsive-16by9">
-                    <video controls src={movieData.videoUrl} alt={movieData.videoAlt} className="embed-responsive-item"/>
+                    <video controls src={baseUrl + movieData.videoUrl} alt={movieData.videoAlt} className="embed-responsive-item"/>
                 </Col>
             </Row>
         </React.Fragment>
@@ -20,51 +22,129 @@ function RenderVideo({movieData}){
     );
 }
 
-function Comments() {
-    return(
-        <Container fluid>
-            <Row>
-                <Col>
-                    <h1>Comments Section</h1>                
-                </Col>
-            </Row>
-        </Container>
-    );
-}
-
-function VideoPlayer(props) {
-    if(props.movieData) {
-    
+function Comments({comments}) {
+    const comment = comments.map(comment => { 
         return(
-            <React.Fragment>
-                <Container fluid className="videoPlayerStyles">
-                    <Row>
-                        <Col xs="12">
-                            <Breadcrumb>
-                                <BreadcrumbItem>
-                                    <Link to="/home">Home</Link>
-                                </BreadcrumbItem>
-                                <BreadcrumbItem>
-                                    <Link to="/gallery">Gallery</Link>
-                                </BreadcrumbItem>
-                                <BreadcrumbItem>
-                                    <Link to={`/gallery/${props.movieData.id}`}>{props.movieData.title} Detail</Link>
-                                </BreadcrumbItem>
-                                <BreadcrumbItem>
-                                    <Link active>{props.movieData.title}</Link>
-                                </BreadcrumbItem>
-                            </Breadcrumb>
-                        </Col>
-                    </Row>
-                    <RenderVideo movieData={props.movieData} />
-                    <Comments />
-                </Container>
-            </React.Fragment>
+        <div className="row mb-3 commentRender" key={comment.id}>
+            <Media left className="col-1 commentAvatar">
+                <Avatar round src={baseUrl + comment.avatar} size={30}/>
+            </Media>
+            <Media body className="col-11">
+                <Media heading>
+                    <h6>{comment.author}</h6>
+                </Media>
+                <h5>{comment.comment}</h5>                
+            </Media>
+            <hr />
+        </div>
 
         );
+    });
+    return comment;
+}
 
-    } else {
-        return <div>Error Loading</div>
+
+
+class VideoPlayer extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            newComment: "",
+            liked: false,
+            watchlist: false
+        }
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.submitComment = this.submitComment.bind(this);
+        this.resetForm = this.resetForm.bind(this);
+    }
+
+    handleInputChange(event) {
+        this.setState({
+            newComment: event.target.value
+        });
+    }
+
+    submitComment = (event) => {
+        alert(`Your comment: ${this.state.newComment}.`);
+        event.preventDefault();
+        this.resetForm();
+    }
+
+    resetForm(){
+        this.setState({newComment: ""});
+    }
+    
+    render(props) {
+        const {movieData} = this.props;
+        const { comments } = this.props;
+        console.log(movieData);
+        console.log(comments);
+        if(movieData) {
+            return(
+                <React.Fragment>
+                    <Container fluid className="videoPlayerStyles">
+                        <Row>
+                            <Col xs="12">
+                                <Breadcrumb>
+                                    <BreadcrumbItem>
+                                        <Link to="/home">Home</Link>
+                                    </BreadcrumbItem>
+                                    <BreadcrumbItem>
+                                        <Link to="/gallery">Gallery</Link>
+                                    </BreadcrumbItem>
+                                    <BreadcrumbItem>
+                                        <Link to={`/gallery/${movieData.id}`}>{movieData.title} Detail</Link>
+                                    </BreadcrumbItem>
+                                    <BreadcrumbItem>
+                                        <Link active>{movieData.title}</Link>
+                                    </BreadcrumbItem>
+                                </Breadcrumb>
+                            </Col>
+                        </Row>
+                        <RenderVideo movieData={movieData} />
+                        <Container fluid>
+                            <Row className="text-center my-3" style={{color: "white"}}>
+                                <Col xs="6">
+                                    <i className="fa fa-plus-circle fa-3x text-center"  style={ !this.state.watchlist ? {color: "white"} : {color: "blue"}} onClick={() => this.setState({watchlist: !this.state.watchlist})}/>
+                                </Col>
+                                <Col xs="6">
+                                    <i className="fa fa-thumbs-up fa-3x text-center" style={ !this.state.liked ? {color: "white"} : {color: "blue"}} onClick={() => this.setState({liked: !this.state.liked})}/>
+                                </Col>
+                            </Row>
+                        </Container>
+                        <Container fluid>
+                            <Row className="mb-3">
+                                <h1>Comments</h1>
+                            </Row>
+                            <Row>
+                                <Comments comments={comments}/>
+                            </Row>
+                            <Row className="m-auto">
+                                <Form>
+                                    <FormGroup row className="m-auto mb-5">
+                                        <Col xs="11">
+                                            <Input
+                                                placeholder="Post a comment"
+                                                type="text" 
+                                                name="comment" 
+                                                id="comment"  
+                                                value={this.state.newComment}
+                                                onChange={this.handleInputChange}
+                                            />
+                                        </Col>
+                                        <Col xs="1">
+                                            <i className="fa fa-edit fa-2x" style={{color: "white"}} onClick={this.submitComment}/>
+                                        </Col>
+                                    </FormGroup>
+                                </Form>
+                            </Row>
+                        </Container>
+                    </Container>
+                </React.Fragment>
+            );
+        } else {
+            return <div>Error Loading</div>
+        }
     }
 }
 
