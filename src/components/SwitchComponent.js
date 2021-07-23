@@ -10,7 +10,7 @@ import EventDetail from "./EventDetailComponent";
 import Gallery from "./GalleryComponent";
 import WatchList from "./WatchlistComponent";
 import { connect } from "react-redux";
-import { fetchGallery, fetchMovieDetails, fetchComments, fetchEvents } from "../redux/ActionCreators";
+import { fetchGallery, fetchMovieDetails, fetchComments, fetchEvents, postComment } from "../redux/ActionCreators";
 
 const mapStateToProps = state => {
     return{
@@ -25,7 +25,8 @@ const mapDispatchToProps = {
     fetchGallery: () => (fetchGallery()),
     fetchMovieDetail: () => (fetchMovieDetails()),
     fetchComments: () => (fetchComments()),
-    fetchEvents: () => (fetchEvents())
+    fetchEvents: () => (fetchEvents()),
+    postComment: (movieId, author, comment) => (postComment(movieId, author, comment))
 }
 
 class SwitchComponent extends Component {
@@ -54,6 +55,7 @@ class SwitchComponent extends Component {
                 <VideoPlayer 
                     movieData={this.props.movieDetail.movieDetail.filter(movieD => movieD.videoId === +match.params.videoId)[0]} 
                     comments={this.props.comments.comments.filter(comment => comment.movieId === +match.params.videoId)}
+                    postComment={this.props.postComment}
                 />
             );
         };

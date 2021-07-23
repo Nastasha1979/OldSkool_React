@@ -50,6 +50,7 @@ class VideoPlayer extends Component {
         super(props);
         this.state = {
             newComment: "",
+            author: "Signed In User",
             liked: false,
             watchlist: false
         }
@@ -66,6 +67,7 @@ class VideoPlayer extends Component {
 
     submitComment = (event) => {
         alert(`Your comment: ${this.state.newComment}.`);
+        this.props.postComment(this.state.author, this.state.newComment);
         event.preventDefault();
         this.resetForm();
     }
@@ -75,10 +77,8 @@ class VideoPlayer extends Component {
     }
     
     render(props) {
-        const {movieData} = this.props;
+        const { movieData } = this.props;
         const { comments } = this.props;
-        console.log(movieData);
-        console.log(comments);
         if(movieData) {
             return(
                 <React.Fragment>

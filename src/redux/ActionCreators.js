@@ -119,6 +119,48 @@ export const addComments = comments => ({
 });
 
 
+export const postComment = (movieId, author, comment) => dispatch => {
+
+    const newComment = {
+        movieId: movieId,
+        author: author,
+        comment: comment,
+        date: new Date().toISOString(),
+        avatar: "/assets/genericUser.png"
+    };
+    
+
+    return fetch(baseUrl + "comments", {
+        method: "POST",
+        body: JSON.stringify(newComment),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => {
+        if(response.ok){
+            return response;
+        }else {
+            const error = new Error(`Error ${response.status}: ${response.statusText}`);
+            error.response = response;
+            throw error;
+        }
+    },
+        error => { throw error; }
+    )
+    .then(response => response.json())
+    .then(response => dispatch(addComment(response)))
+    .catch(error => {
+        console.log("Post Comment", error.message);
+        alert("Your comment could not be posted\nError: " + error.message);
+    })
+};
+
+export const addComment = comment => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment
+});
+
 //Events
 
 export const fetchEvents = () => dispatch => {

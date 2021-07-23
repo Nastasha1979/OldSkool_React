@@ -8,6 +8,10 @@ export const comments = (state = { isLoading: true, errMess: null, comments: [] 
             return {...state, isLoading: true, errMess: null, comments: [] };
         case ActionTypes.COMMENTS_ERROR:
             return {...state, isLoading: false, errMess: action.payload };
+        case ActionTypes.ADD_COMMENT: 
+            const comment = action.payload;
+            comment.id = state.comments.length;
+            return{...state, comments: state.comments.concat(comment)};
         default:
             return state;
     }
