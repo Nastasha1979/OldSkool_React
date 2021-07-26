@@ -3,6 +3,8 @@ import { Container, Row, Col, Card, CardBody, CardTitle, CardSubtitle, CardImg }
 import Avatar from "react-avatar";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
+import { Link } from "react-router-dom";
+import { deleteWatchlist } from "../redux/ActionCreators";
 
 const mapStateToProps = state => {
     return {
@@ -11,8 +13,12 @@ const mapStateToProps = state => {
     };
 };
 
+const mapDispatchToProps = {
+    deleteWatchlist: videoId => (deleteWatchlist(videoId))
+}
+
 function GetWatchlist(props) {
-    if(props.watchlist){
+    if(props.watchlist.length != 0){
         const { watchlist } = props;
         
         const {movieDetail} = props;
@@ -20,26 +26,34 @@ function GetWatchlist(props) {
             return(
                 
                 <Col xs="2" key={watchlist.videoId}>
-                    <Card>
-                        <CardImg top width="100%" src={baseUrl + watchlist.movieImg} style={{height: "200px"}}/>
-                        <CardBody>
-                            
-                            <CardTitle>{watchlist.title}</CardTitle>
-                            <CardSubtitle>{watchlist.year}</CardSubtitle>
-                        </CardBody>
-                    </Card>
+                    
+                        <Card>
+                            <Link to={`/gallery/detail/${watchlist.videoId}`}>
+                                <CardImg top width="100%" src={baseUrl + watchlist.movieImg} style={{height: "200px"}}/>
+                            </Link>
+                            <CardBody>
+                                <Link to={`/gallery/detail/${watchlist.videoId}`}>
+                                    <CardTitle>{watchlist.title}</CardTitle>
+                                    <CardSubtitle>{watchlist.year}</CardSubtitle>
+                                </Link>
+                                <i className="fa fa-minus-square fa-2x text-center" style={{color: "red" }} onClick={() => props.remove(watchlist.videoId)} />
+                            </CardBody>
+                        </Card>
+                    
                 </Col>
             );
         });
         return renderWatchlist;
     } else {
-        return <Col>You have no items in your watchlist.</Col>
+        return <Col style={{color: "white", fontSize: "36px", paddingTop: 10}}>You have no items in your watchlist. Check out our gallery <Link to="/gallery">here</Link> and get to watching!</Col>
     }
 }
 
 class WatchList extends Component {
 
-
+    deleteWatchlist(videoId){
+        this.props.deleteWatchlist(videoId);
+    }
 
     render() {
         
@@ -52,7 +66,11 @@ class WatchList extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <GetWatchlist movieDetail={this.props.movieDetail} watchlist={this.props.watchlist}/>
+                        <GetWatchlist 
+                            movieDetail={this.props.movieDetail} 
+                            watchlist={this.props.watchlist} 
+                            remove={this.props.deleteWatchlist}    
+                        />
                     </Row>
                 </Container>
             </React.Fragment>
@@ -60,4 +78,4 @@ class WatchList extends Component {
     }
 }
 
-export default connect(mapStateToProps)(WatchList);
+export default connect(mapStateToProps, mapDispatchToProps)(WatchList);
