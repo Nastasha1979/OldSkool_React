@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Avatar from "react-avatar";
 import { baseUrl } from "../shared/baseUrl";
 import { connect } from "react-redux";
-import { postWatchlist } from "../redux/ActionCreators";
+import { postWatchlist, deleteWatchlist } from "../redux/ActionCreators";
 
 const mapStateToProps = state => {
     return {
@@ -12,7 +12,8 @@ const mapStateToProps = state => {
     };
 };
 const mapDispatchToProps = {
-    postWatchlist: videoId => (postWatchlist(videoId))
+    postWatchlist: videoId => (postWatchlist(videoId)),
+    deleteWatchlist: videoId => (deleteWatchlist(videoId))
 }
 
 function RenderVideo({movieData}){
@@ -89,6 +90,10 @@ class VideoPlayer extends Component {
     addToWatchlist(videoId) {
         this.props.postWatchlist(videoId);
     }
+
+    removeFromWatchlist(videoId) {
+        this.props.deleteWatchlist(videoId);
+    }
     
     render(props) {
         const { movieData } = this.props;
@@ -120,8 +125,12 @@ class VideoPlayer extends Component {
                         <Container fluid>
                             <Row className="text-center my-3" style={{color: "white"}}>
                                 <Col xs="6">
-                                    <i className={this.props.watchlist.includes(movieData.videoId) ? "fa fa-minus fa-3x text-center" : "fa fa-plus fa-3x text-center"}   
-                                    onClick={() => {this.addToWatchlist(movieData.videoId)}}/>
+                                    <i className={this.props.watchlist.includes(movieData.videoId) ? "fa fa-minus fa-3x text-center" : "fa fa-plus fa-3x text-center"}  
+                                    style={this.props.watchlist.includes(movieData.videoId) ? {color: "red"} : {color: "white"}}  
+                                    onClick={() => {
+                                        this.props.watchlist.includes(movieData.videoId) ? this.removeFromWatchlist(movieData.videoId) : this.addToWatchlist(movieData.videoId)
+                                    }}
+                                    />
                                 </Col>
                                 <Col xs="6">
                                     <i className="fa fa-thumbs-up fa-3x text-center" style={ !this.state.liked ? {color: "white"} : {color: "blue"}} onClick={() => this.setState({liked: !this.state.liked})}/>
