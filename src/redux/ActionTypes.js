@@ -14,3 +14,6 @@ export const ADD_COMMENT = "ADD_COMMENT";
 export const GET_EVENTS = "GET_EVENTS";
 export const EVENTS_LOADING = "EVENTS_LOADING";
 export const EVENTS_ERROR = "EVENTS_ERROR";
+
+export const ADD_WATCHLIST = "ADD_WATCHLIST";
+export const DELETE_WATCHLIST = "DELETE_WATCHLIST";

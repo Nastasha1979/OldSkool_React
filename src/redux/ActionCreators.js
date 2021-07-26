@@ -199,3 +199,20 @@ export const addEvents = events => ({
     type: ActionTypes.GET_EVENTS,
     payload: events
 });
+
+
+
+export const postWatchlist = videoId => dispatch => {
+    console.log(`posting ${videoId}.`);
+    dispatch(addWatchlist(videoId));
+};
+
+export const addWatchlist = videoId => ({
+    type: ActionTypes.ADD_WATCHLIST,
+    payload: videoId
+});
+
+export const deleteWatchlist = videoId => ({
+    type: ActionTypes.DELETE_WATCHLIST,
+    payload: videoId
+});

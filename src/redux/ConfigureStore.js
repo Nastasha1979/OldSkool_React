@@ -7,6 +7,7 @@ import { galleryData } from "./gallery";
 import { movieDetail } from "./movieDetail";
 import { comments } from "./comments";
 import { eventsData } from "./events";
+import { watchlist } from "./watchlist";
 
 
 const config = {
@@ -21,7 +22,8 @@ export const ConfigureStore = () => {
             galleryData,
             movieDetail,
             comments,
-            eventsData
+            eventsData,
+            watchlist
         }),
         applyMiddleware(thunk, logger)
     );

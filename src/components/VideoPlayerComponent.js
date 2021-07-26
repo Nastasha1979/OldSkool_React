@@ -3,6 +3,17 @@ import { Container, Row, Col, Breadcrumb, BreadcrumbItem, Media, Input, Button, 
 import { Link } from "react-router-dom";
 import Avatar from "react-avatar";
 import { baseUrl } from "../shared/baseUrl";
+import { connect } from "react-redux";
+import { postWatchlist } from "../redux/ActionCreators";
+
+const mapStateToProps = state => {
+    return {
+        watchlist: state.watchlist
+    };
+};
+const mapDispatchToProps = {
+    postWatchlist: videoId => (postWatchlist(videoId))
+}
 
 function RenderVideo({movieData}){
     return(
@@ -65,20 +76,24 @@ class VideoPlayer extends Component {
         });
     }
 
-    submitComment = (event) => {
+    submitComment = () => {
         alert(`Your comment: ${this.state.newComment}.`);
-        this.props.postComment(this.state.author, this.state.newComment);
-        event.preventDefault();
+        this.props.postComment(this.props.movieData.videoId, this.state.author, this.state.newComment);
         this.resetForm();
     }
 
     resetForm(){
         this.setState({newComment: ""});
     }
+
+    addToWatchlist(videoId) {
+        this.props.postWatchlist(videoId);
+    }
     
     render(props) {
         const { movieData } = this.props;
         const { comments } = this.props;
+        console.log(this.props.watchlist);
         if(movieData) {
             return(
                 <React.Fragment>
@@ -105,7 +120,8 @@ class VideoPlayer extends Component {
                         <Container fluid>
                             <Row className="text-center my-3" style={{color: "white"}}>
                                 <Col xs="6">
-                                    <i className="fa fa-plus-circle fa-3x text-center"  style={ !this.state.watchlist ? {color: "white"} : {color: "blue"}} onClick={() => this.setState({watchlist: !this.state.watchlist})}/>
+                                    <i className={this.props.watchlist.includes(movieData.videoId) ? "fa fa-minus fa-3x text-center" : "fa fa-plus fa-3x text-center"}   
+                                    onClick={() => {this.addToWatchlist(movieData.videoId)}}/>
                                 </Col>
                                 <Col xs="6">
                                     <i className="fa fa-thumbs-up fa-3x text-center" style={ !this.state.liked ? {color: "white"} : {color: "blue"}} onClick={() => this.setState({liked: !this.state.liked})}/>
@@ -133,7 +149,7 @@ class VideoPlayer extends Component {
                                             />
                                         </Col>
                                         <Col xs="1">
-                                            <i className="fa fa-edit fa-2x" style={{color: "white"}} onClick={this.submitComment}/>
+                                            <i className="fa fa-edit fa-2x" style={{color: "white"}} onClick={() => this.submitComment(movieData.movieId)}/>
                                         </Col>
                                     </FormGroup>
                                 </Form>
@@ -148,4 +164,4 @@ class VideoPlayer extends Component {
     }
 }
 
-export default VideoPlayer;
+export default connect(mapStateToProps, mapDispatchToProps)(VideoPlayer);
