@@ -17,3 +17,6 @@ export const EVENTS_ERROR = "EVENTS_ERROR";
 
 export const ADD_WATCHLIST = "ADD_WATCHLIST";
 export const DELETE_WATCHLIST = "DELETE_WATCHLIST";
+
+export const ADD_LIKE = "ADD_LIKE";
+export const DELETE_LIKE = "DELETE_LIKE";

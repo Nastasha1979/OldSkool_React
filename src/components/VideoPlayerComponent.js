@@ -4,16 +4,19 @@ import { Link } from "react-router-dom";
 import Avatar from "react-avatar";
 import { baseUrl } from "../shared/baseUrl";
 import { connect } from "react-redux";
-import { postWatchlist, deleteWatchlist } from "../redux/ActionCreators";
+import { postWatchlist, deleteWatchlist, addLike, deleteLike } from "../redux/ActionCreators";
 
 const mapStateToProps = state => {
     return {
-        watchlist: state.watchlist
+        watchlist: state.watchlist,
+        likes: state.likes
     };
 };
 const mapDispatchToProps = {
     postWatchlist: videoId => (postWatchlist(videoId)),
-    deleteWatchlist: videoId => (deleteWatchlist(videoId))
+    deleteWatchlist: videoId => (deleteWatchlist(videoId)),
+    addLike: (videoId) => (addLike(videoId)),
+    deleteLike: (videoId) => (deleteLike(videoId))
 }
 
 function RenderVideo({movieData}){
@@ -64,7 +67,7 @@ class VideoPlayer extends Component {
             newComment: "",
             author: "Signed In User",
             liked: false,
-            watchlist: false
+            like: false
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.submitComment = this.submitComment.bind(this);
@@ -94,11 +97,21 @@ class VideoPlayer extends Component {
     removeFromWatchlist(videoId) {
         this.props.deleteWatchlist(videoId);
     }
+
+    addLike(videoId) {
+        this.props.addLike(videoId);
+        this.setState({liked: !this.state.liked});
+        console.log(this.props.likes);
+    }
+
+    deleteLike(videoId) {
+        this.props.deleteLike(videoId);
+        console.log(this.props.likes);
+    }
     
     render(props) {
         const { movieData } = this.props;
         const { comments } = this.props;
-        console.log(this.props.watchlist);
         if(movieData) {
             return(
                 <React.Fragment>
@@ -133,7 +146,9 @@ class VideoPlayer extends Component {
                                     />
                                 </Col>
                                 <Col xs="6">
-                                    <i className="fa fa-thumbs-up fa-3x text-center" style={ !this.state.liked ? {color: "white"} : {color: "blue"}} onClick={() => this.setState({liked: !this.state.liked})}/>
+                                    <i className={this.state.liked ? "fa fa-thumbs-up fa-3x text-center" : "fa fa-thumbs-down fa-3x text-center"} 
+                                    style={ !this.state.liked ? {color: "white"} : {color: "blue"}} 
+                                    onClick={() => this.addLike(movieData.videoId)}/>
                                 </Col>
                             </Row>
                         </Container>
