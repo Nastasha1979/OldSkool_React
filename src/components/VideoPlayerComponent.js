@@ -4,19 +4,16 @@ import { Link } from "react-router-dom";
 import Avatar from "react-avatar";
 import { baseUrl } from "../shared/baseUrl";
 import { connect } from "react-redux";
-import { postWatchlist, deleteWatchlist, addLike, deleteLike } from "../redux/ActionCreators";
+import { postWatchlist, deleteWatchlist } from "../redux/ActionCreators";
 
 const mapStateToProps = state => {
     return {
-        watchlist: state.watchlist,
-        likes: state.likes
+        watchlist: state.watchlist
     };
 };
 const mapDispatchToProps = {
     postWatchlist: videoId => (postWatchlist(videoId)),
-    deleteWatchlist: videoId => (deleteWatchlist(videoId)),
-    addLike: (videoId) => (addLike(videoId)),
-    deleteLike: (videoId) => (deleteLike(videoId))
+    deleteWatchlist: videoId => (deleteWatchlist(videoId))
 }
 
 function RenderVideo({movieData}){
@@ -98,20 +95,11 @@ class VideoPlayer extends Component {
         this.props.deleteWatchlist(videoId);
     }
 
-    addLike(videoId) {
-        this.props.addLike(videoId);
-        this.setState({liked: !this.state.liked});
-        console.log(this.props.likes);
-    }
-
-    deleteLike(videoId) {
-        this.props.deleteLike(videoId);
-        console.log(this.props.likes);
-    }
     
     render(props) {
         const { movieData } = this.props;
         const { comments } = this.props;
+        
         if(movieData) {
             return(
                 <React.Fragment>
@@ -137,19 +125,16 @@ class VideoPlayer extends Component {
                         <RenderVideo movieData={movieData} />
                         <Container fluid>
                             <Row className="text-center my-3" style={{color: "white"}}>
-                                <Col xs="6">
+                                <Col xs="1">
                                     <i className={this.props.watchlist.includes(movieData.videoId) ? "fa fa-minus fa-3x text-center" : "fa fa-plus fa-3x text-center"}  
                                     style={this.props.watchlist.includes(movieData.videoId) ? {color: "red"} : {color: "white"}}  
                                     onClick={() => {
                                         this.props.watchlist.includes(movieData.videoId) ? this.removeFromWatchlist(movieData.videoId) : this.addToWatchlist(movieData.videoId)
                                     }}
                                     />
+                                    <h5>Add to Watchlist</h5>
                                 </Col>
-                                <Col xs="6">
-                                    <i className={this.state.liked ? "fa fa-thumbs-up fa-3x text-center" : "fa fa-thumbs-down fa-3x text-center"} 
-                                    style={ !this.state.liked ? {color: "white"} : {color: "blue"}} 
-                                    onClick={() => this.addLike(movieData.videoId)}/>
-                                </Col>
+                                
                             </Row>
                         </Container>
                         <Container fluid>

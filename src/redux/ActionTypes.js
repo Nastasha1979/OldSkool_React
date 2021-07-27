@@ -20,3 +20,5 @@ export const DELETE_WATCHLIST = "DELETE_WATCHLIST";
 
 export const ADD_LIKE = "ADD_LIKE";
 export const DELETE_LIKE = "DELETE_LIKE";
+export const GET_LIKES = "GET_LIKES";
+export const GET_LIKES_FAILED = "GET_LIKES_FAILED";

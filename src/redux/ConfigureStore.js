@@ -8,7 +8,7 @@ import { movieDetail } from "./movieDetail";
 import { comments } from "./comments";
 import { eventsData } from "./events";
 import { watchlist } from "./watchlist";
-import { likes } from "./likes";
+
 
 
 const config = {
@@ -24,8 +24,7 @@ export const ConfigureStore = () => {
             movieDetail,
             comments,
             eventsData,
-            watchlist,
-            likes
+            watchlist
         }),
         applyMiddleware(thunk, logger)
     );

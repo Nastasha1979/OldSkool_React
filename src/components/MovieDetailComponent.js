@@ -117,20 +117,16 @@ class MovieDetailComponent extends Component {
                             </Row>
                             <Container fluid>
                                 <Row className="text-center my-3" style={{color: "white"}}>
-                                    <Col xs="1">
+                                    <Col xs="2">
                                         <i className={this.props.watchlist.includes(movieDetail.videoId) ? "fa fa-minus fa-3x text-center" : "fa fa-plus fa-3x text-center"}
                                         style={this.props.watchlist.includes(movieDetail.videoId) ? {color: "red"} : {color: "white"}}   
                                         onClick={() => {
                                             this.props.watchlist.includes(movieDetail.videoID) ? this.removeFromWatchlist(movieDetail.videoId) : this.addToWatchlist(movieDetail.videoId)
                                         }}
                                         />
+                                        <h5>Add to Watchlist</h5>
                                     </Col>
-                                    <Col xs="1">
-                                        <i className="fa fa-thumbs-up fa-3x text-center" 
-                                            // style={ !this.state.liked ? {color: "white"} : {color: "blue"}} 
-                                        // onClick={() => this.setState({liked: !this.state.liked})}
-                                        />
-                                    </Col>
+                                    
                                 </Row>
                             </Container>
                             {<RenderDetail movieDetail={movieDetail} />}

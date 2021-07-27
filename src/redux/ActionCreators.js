@@ -202,6 +202,8 @@ export const addEvents = events => ({
 
 
 
+
+
 export const postWatchlist = videoId => dispatch => {
     console.log(`posting ${videoId}.`);
     dispatch(addWatchlist(videoId));
@@ -217,18 +219,9 @@ export const deleteWatchlist = videoId => ({
     payload: videoId
 });
 
-export const postLike = videoId => dispatch => {
-    dispatch(addLike(videoId));
-}
 
 
-export const addLike = videoId => ({
-    type: ActionTypes.ADD_LIKE,
-    payload: videoId
-});
 
-export const deleteLike = videoId => ({
-    type: ActionTypes.DELETE_LIKE,
-    payload: videoId
-});
+
+
 
