@@ -10,14 +10,15 @@ import EventDetail from "./EventDetailComponent";
 import Gallery from "./GalleryComponent";
 import WatchList from "./WatchlistComponent";
 import { connect } from "react-redux";
-import { fetchGallery, fetchMovieDetails, fetchComments, fetchEvents, postComment } from "../redux/ActionCreators";
+import { fetchGallery, fetchMovieDetails, fetchComments, fetchEvents, postComment, fetchReviews } from "../redux/ActionCreators";
 
 const mapStateToProps = state => {
     return{
         galleryData: state.galleryData,
         movieDetail: state.movieDetail,
         eventsData: state.eventsData,
-        comments: state.comments
+        comments: state.comments,
+        reviews: state.reviews
     }
 }
 
@@ -26,6 +27,7 @@ const mapDispatchToProps = {
     fetchMovieDetail: () => (fetchMovieDetails()),
     fetchComments: () => (fetchComments()),
     fetchEvents: () => (fetchEvents()),
+    fetchReviews: () => (fetchReviews()),
     postComment: (movieId, author, comment) => (postComment(movieId, author, comment))
 }
 
@@ -40,6 +42,7 @@ class SwitchComponent extends Component {
         this.props.fetchMovieDetail();
         this.props.fetchComments();
         this.props.fetchEvents();
+        this.props.fetchReviews();
     }
 
 

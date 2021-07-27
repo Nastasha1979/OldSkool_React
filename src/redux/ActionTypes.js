@@ -18,7 +18,10 @@ export const EVENTS_ERROR = "EVENTS_ERROR";
 export const ADD_WATCHLIST = "ADD_WATCHLIST";
 export const DELETE_WATCHLIST = "DELETE_WATCHLIST";
 
-export const ADD_LIKE = "ADD_LIKE";
-export const DELETE_LIKE = "DELETE_LIKE";
 export const GET_LIKES = "GET_LIKES";
 export const GET_LIKES_FAILED = "GET_LIKES_FAILED";
+
+export const GET_REVIEWS = "GET_REVIEWS";
+export const REVIEWS_LOADING = "REVIEWS_LOADING";
+export const REVIEWS_ERROR = "REVIEWS_ERROR";
+export const ADD_REVIEWS = "ADD_REVIEWS";

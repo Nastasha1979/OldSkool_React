@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import { Media, Container, Row, Col, Table, Breadcrumb, BreadcrumbItem, Fade } from "reactstrap";
+import Avatar from "react-avatar";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../shared/baseUrl";
 import { connect } from "react-redux";
 import { postWatchlist, deleteWatchlist } from "../redux/ActionCreators";
 
+
+//adding reviews not working. All looks good, but it's not outputting
 const mapStateToProps = state => {
     return {
-        watchlist: state.watchlist
+        watchlist: state.watchlist,
+        reviews: state.reviews
     };
 };
 const mapDispatchToProps = {
@@ -77,6 +81,7 @@ function RenderDetail({movieDetail}) {
     );
 }
 
+
 class MovieDetailComponent extends Component {
     constructor(props){
         super(props);
@@ -92,9 +97,29 @@ class MovieDetailComponent extends Component {
     removeFromWatchlist(videoId) {
         this.props.deleteWatchlist(videoId);
     }
+
     
     render(props){
         const { movieDetail } = this.props;
+        const getReviews = () => {
+            const rev = this.props.reviews.reviews.filter(review => review.movieId === movieDetail.videoId).map(review => {
+                return(
+                    <div className="row mb-3 commentRender" key={review.id}>
+                        <Media left className="col-1 commentAvatar">
+                            <Avatar round src={baseUrl + review.avatar} size={30}/>
+                        </Media>
+                        <Media body className="col-11">
+                            <Media heading>
+                                <h6>{review.author}</h6>
+                            </Media>
+                            <h5>{review.review}</h5>                
+                        </Media>
+                        <hr />
+                    </div>
+                );
+            });
+            return rev;
+        }
         if(movieDetail) {
             return(
                 <React.Fragment>
@@ -130,6 +155,12 @@ class MovieDetailComponent extends Component {
                                 </Row>
                             </Container>
                             {<RenderDetail movieDetail={movieDetail} />}
+                        </Container>
+                        <Container fluid>
+                            <Row><Col><h2 style={{color: "white", textAlign: "center"}}>Member Reviews</h2></Col></Row>
+                            <Row>
+                                {getReviews}
+                            </Row>
                         </Container>
                     </Fade>
                 </React.Fragment>

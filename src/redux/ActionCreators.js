@@ -222,6 +222,84 @@ export const deleteWatchlist = videoId => ({
 
 
 
+//REVIEWS
+
+export const fetchReviews = () => dispatch => {
+
+    dispatch(reviewsLoading());
+
+    return fetch(baseUrl + "reviews")
+        .then(response => {
+            if(response.ok) {
+                return response;
+            } else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
+        error => {
+            const errMess = new Error(error.message);
+            throw errMess;
+        })
+        .then(response => response.json())
+        .then(reviews => dispatch(addReviews(reviews)))
+        .catch(error => dispatch(reviewsFailed(error.message)));
+};
+
+export const reviewsLoading = () => ({
+    type: ActionTypes.REVIEWS_LOADING
+});
+
+export const reviewsFailed = errMess => ({
+    type: ActionTypes.REVIEWS_ERROR,
+    payload: errMess
+});
+
+export const addReviews = reviews => ({
+    type: ActionTypes.GET_REVIEWS,
+    payload: reviews
+});
 
 
+export const postReviews = (movieId, author, review) => dispatch => {
 
+    const newReview = {
+        movieId: movieId,
+        author: author,
+        review: review,
+        date: new Date().toISOString(),
+        avatar: "/assets/genericUser.png"
+    };
+    
+
+    return fetch(baseUrl + "reviews", {
+        method: "POST",
+        body: JSON.stringify(newReview),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => {
+        if(response.ok){
+            return response;
+        }else {
+            const error = new Error(`Error ${response.status}: ${response.statusText}`);
+            error.response = response;
+            throw error;
+        }
+    },
+        error => { throw error; }
+    )
+    .then(response => response.json())
+    .then(review => dispatch(addReview(review)))
+    .catch(error => {
+        console.log("Post Review", error.message);
+        alert("Your review could not be posted\nError: " + error.message);
+    });
+};
+
+export const addReview = review => ({
+    type: ActionTypes.ADD_REVIEWS,
+    payload: review
+});
