@@ -33,6 +33,10 @@ body {
   background-color: transparent;
 }
 
+.homeContainer {
+  position: relative;
+}
+
 .myMovie {
   position: fixed;
   top: 0;
@@ -47,7 +51,7 @@ body {
 }
 
 .myImg {
-  position: absolute;
+  position: fixed;
   background-size: cover;
   height: 100%;
   width: 100%;
@@ -55,23 +59,48 @@ body {
   right: 0;
 }
 
-.rowText1 {
-  font-family: "Raleway", sans-serif;
-  font-size: 4rem;
-  color: white;
-  height: 100%;
-  width: 100%;
-  background-color: black;
+.overText {
+  text-align: "center";
+  margin-top: 150px;
 }
 
-.rowText2 {
+.overText h1 {
+  font-size: 56px;
+  text-align: "center";
   font-family: "Raleway", sans-serif;
-  font-size: 4rem;
-  color: white;
-  height: 100%;
-  width: 100%;
-  background-color: black;
-  text-align: right;
+}
+
+.overText2 {
+  position: absolute;
+  top: 120px;
+  left: 5px;
+}
+
+.overText2 h1 {
+  font-size: 48px;
+  text-align: "center";
+  font-family: "Raleway", sans-serif;
+}
+
+.underText {
+  margin-top: 250px;
+  float: right;
+}
+
+.underText h1 {
+  font-size: 56px;
+  font-family: "Raleway", sans-serif;
+}
+
+.underText2 {
+  position: absolute;
+  bottom: 40px;
+  right: 16px;
+}
+
+.underText2 h1 {
+  font-size: 48px;
+  font-family: "Raleway", sans-serif;
 }
 
 .site-footer {
@@ -238,12 +267,8 @@ body {
   font-weight: "bold";
 }
 
-.eventDetailContainer #overTitle {
-  color: "black";
-  font-size: "72px";
-  -webkit-transform: translateY(-100);
-          transform: translateY(-100);
-  margin: auto;
+.eventDetailContainer .breadcrumb-item {
+  font-family: "Raleway", sans-serif;
 }
 
 .registerModalHeader {
@@ -256,12 +281,7 @@ body {
   font-family: "Raleway";
 }
 
-.modalHead {
-  color: "white";
-}
-
 .submitTitle {
-  color: "white";
   text-align: "center";
 }
 
@@ -272,5 +292,18 @@ body {
 .reviewModalStyle label {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+}
+
+.signUpModal .modal-header {
+  background-color: "black";
+}
+
+.breadcrumbStyles {
+  font-family: "Raleway", sans-serif;
+}
+
+.breadcrumbStyles a {
+  font-size: 12px;
+  color: white;
 }
 /*# sourceMappingURL=styles.css.map */

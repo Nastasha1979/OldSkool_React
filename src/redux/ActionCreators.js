@@ -304,3 +304,71 @@ export const addReview = review => ({
     type: ActionTypes.ADD_REVIEWS,
     payload: review
 });
+
+export const postContact = (name, email, message) => dispatch => {
+
+    const newContact = {
+        name: name,
+        email: email,
+        message: message,
+        date: new Date().toISOString()
+    };
+    
+
+    return fetch(baseUrl + "reviews", {
+        method: "POST",
+        body: JSON.stringify(newContact),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => {
+        if(response.ok){
+            return response;
+        }else {
+            const error = new Error(`Error ${response.status}: ${response.statusText}`);
+            error.response = response;
+            throw error;
+        }
+    },
+        error => { throw error; }
+    )
+    .then(response => response.json())
+    .then(newContact => dispatch(addContact(newContact)))
+    .catch(error => {
+        console.log("Post Review", error.message);
+        alert("Your review could not be posted\nError: " + error.message);
+    });
+};
+
+export const addContact = newContact => ({
+    type: ActionTypes.POST_CONTACT,
+    payload: newContact
+});
+
+export const fetchContacts = () => dispatch => {
+
+
+    return fetch(baseUrl + "contact")
+        .then(response => {
+            if(response.ok) {
+                return response;
+            } else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
+        error => {
+            const errMess = new Error(error.message);
+            throw errMess;
+        })
+        .then(response => response.json())
+        .then(contacts => dispatch(addContacts(contacts)))
+        .catch(error => console.log(error.message));
+};
+
+export const addContacts = contacts => ({
+    type: ActionTypes.GET_CONTACTS,
+    payload: contacts
+});

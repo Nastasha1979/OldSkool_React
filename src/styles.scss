@@ -19,7 +19,6 @@ Fix Home Page Styling
 }
 
 a {
-
     text-decoration: none;
 }
 
@@ -46,7 +45,10 @@ body {
 
 
 //Home Video Component
-
+.homeContainer {
+    position: relative;
+    
+}
 
 .myMovie {
     position: fixed; 
@@ -62,7 +64,7 @@ body {
 }
 
 .myImg {
-    position: absolute;
+    position: fixed;
     background-size: cover;
     height: 100%;
     width: 100%;
@@ -71,25 +73,44 @@ body {
 
 }
 
-.rowText1 {
-    
-    font-family: $secondaryFont;
-    font-size: 4rem;
-    color: white;
-    height: 100%;
-    width: 100%;
-    background-color: black;
+.overText {
+    text-align: "center";
+    margin-top: 150px;
+    h1 {
+        font-size: 56px;
+        text-align: "center";
+        font-family: $secondaryFont;
+    }
 }
 
-.rowText2 {
-   
-    font-family: $secondaryFont;
-    font-size: 4rem;
-    color: white;
-    height: 100%;
-    width: 100%;
-    background-color: black;
-    text-align: right;
+.overText2 {
+    position: absolute;
+    top: 120px;
+    left: 5px;
+    h1 {
+        font-size: 48px;
+        text-align: "center";
+        font-family: $secondaryFont;
+    }
+}
+
+.underText {
+    margin-top: 250px;
+    float: right;
+    h1 {
+        font-size: 56px;
+        font-family: $secondaryFont;
+    }
+}
+
+.underText2{
+    position: absolute;
+    bottom: 40px;
+    right: 16px;
+    h1 {
+        font-size: 48px;
+        font-family: $secondaryFont;
+    }
 }
 
 
@@ -261,12 +282,9 @@ body {
 }
 
 .eventDetailContainer {
-    #overTitle {
-        color: "black";
-        font-size: "72px";
-        transform: translateY(-100);
-        margin: auto;
-    }
+   .breadcrumb-item {
+       font-family: $secondaryFont;
+   }
 }
 
 //Register/Signin Modal
@@ -286,13 +304,8 @@ body {
 }
 
 //postReview Modal
-.modalHead {
-    color: "white";
-    
-}
 
 .submitTitle {
-    color: "white";
     text-align: "center";  
     .row {
         text-align: "center";
@@ -307,4 +320,20 @@ body {
     
 }
 
+
+//Sign up Modal
+.signUpModal {
+    .modal-header {
+        background-color: "black";
+    }
+}
+
+//breadcrumbs
+.breadcrumbStyles {
+    font-family: $secondaryFont;
+    a {
+        font-size: 12px;
+        color: white;
+    }
+}
 

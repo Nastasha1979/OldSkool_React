@@ -39,7 +39,7 @@ function Comments({comments}) {
         return(
         <div className="row mb-3 commentRender" key={comment.id}>
             <Media left className="col-1 commentAvatar">
-                <Avatar round src={baseUrl + comment.avatar} size={30}/>
+            <div className="d-none d-md-block text-center"><Avatar round src={baseUrl + comment.avatar} size={40}/></div>
             </Media>
             <Media body className="col-11">
                 <Media heading>

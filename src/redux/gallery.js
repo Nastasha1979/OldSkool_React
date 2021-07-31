@@ -1,6 +1,6 @@
 import * as ActionTypes from "./ActionTypes";
 
-export const galleryData = (state = { isLoading: true, errMess: null, galleryData: [] }, action) => {
+export const galleryData = (state = { isLoading: false, errMess: null, galleryData: [] }, action) => {
     switch(action.type) {
         case ActionTypes.GET_FILMS: 
             return {...state, isLoading: false, errMess: null, galleryData: action.payload };

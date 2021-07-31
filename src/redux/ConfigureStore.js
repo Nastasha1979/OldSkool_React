@@ -9,6 +9,7 @@ import { comments } from "./comments";
 import { eventsData } from "./events";
 import { watchlist } from "./watchlist";
 import { reviews } from "./reviews";
+import { contact } from "./contact";
 
 
 const config = {
@@ -25,7 +26,8 @@ export const ConfigureStore = () => {
             comments,
             eventsData,
             watchlist,
-            reviews
+            reviews,
+            contact
         }),
         applyMiddleware(thunk, logger)
     );

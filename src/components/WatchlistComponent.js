@@ -25,7 +25,7 @@ function GetWatchlist(props) {
         const renderWatchlist = movieDetail.movieDetail.filter(movieD => watchlist.includes(movieD.videoId)).map(watchlist => {
             return(
                 
-                <Col xs="2" key={watchlist.videoId}>
+                <Col lg="2" md="3" xs="6" key={watchlist.videoId}>
                     
                         <Card>
                             <Link to={`/gallery/detail/${watchlist.videoId}`}>

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { baseUrl } from "../shared/baseUrl";
 import { connect } from "react-redux";
 import { postWatchlist, deleteWatchlist, postReviews } from "../redux/ActionCreators";
+import { Loading } from "./LoadingComponent";
 
 
 
@@ -28,10 +29,10 @@ function RenderDetail({movieDetail}) {
         <React.Fragment>
             
             <Row key={movieDetail.id}>
-                <Col xs="12">
+                <Col md="12">
                     <Media className="d-flex">
                         
-                            <Media object src={baseUrl + movieDetail.movieImg} alt={movieDetail.movieAlt} />
+                            <div className="d-none d-md-block"><Media object src={baseUrl + movieDetail.movieImg} alt={movieDetail.movieAlt} /></div>
                         
                         <Media body >
                             <h1 className="text-center">{movieDetail.title} - {movieDetail.year}</h1>  
@@ -113,7 +114,7 @@ class MovieDetailComponent extends Component {
             return(
                 <div className="row mb-4 commentRender" key={review.id}>
                     <Media left className="col-1 commentAvatar">
-                        <Avatar round src={baseUrl + review.avatar} size={30}/>
+                        <div className="d-none d-md-block text-center"><Avatar round src={baseUrl + review.avatar} size={40}/></div>
                     </Media>
                     <Media body className="col-11 mb-1">
                         <Media heading>
@@ -173,7 +174,14 @@ class MovieDetailComponent extends Component {
     
     render(props){
         const { movieDetail } = this.props;
-        
+        if(this.props.isLoading){
+            return(
+                <div className="text-center m-auto my-5">
+                    <Loading />
+                </div>
+            );
+        }
+
         if(movieDetail) {
             return(
                 <React.Fragment>
@@ -181,7 +189,7 @@ class MovieDetailComponent extends Component {
                         <Container fluid className="movieDetailStyles">
                             <Row>
                                 <Col xs="12">
-                                    <Breadcrumb>
+                                    <Breadcrumb className="breadcrumbStyles">
                                         <BreadcrumbItem>
                                             <Link to="/home">Home</Link>
                                         </BreadcrumbItem>
@@ -196,8 +204,8 @@ class MovieDetailComponent extends Component {
                             </Row>
                             <Container fluid>
                                 <Row className="text-center my-3" style={{color: "white"}}>
-                                    <Col xs="2">
-                                        <i className={this.props.watchlist.includes(movieDetail.videoId) ? "fa fa-minus fa-3x text-center" : "fa fa-plus fa-3x text-center"}
+                                    <Col xs="3">
+                                        <i className={this.props.watchlist.includes(movieDetail.videoId) ? "fa fa-minus fa-2x text-center" : "fa fa-plus fa-2x text-center"}
                                         style={this.props.watchlist.includes(movieDetail.videoId) ? {color: "red"} : {color: "white"}}   
                                         onClick={() => {
                                             this.props.watchlist.includes(movieDetail.videoID) ? this.removeFromWatchlist(movieDetail.videoId) : this.addToWatchlist(movieDetail.videoId)

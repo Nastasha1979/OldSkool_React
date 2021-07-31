@@ -4,23 +4,24 @@ import { Link } from "react-router-dom";
 import { baseUrl } from "../shared/baseUrl";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Loading } from "./LoadingComponent";
 
 function GetFirstCarousel({galleryData}) {
     const responsive = {
         desktop: {
           breakpoint: { max: 3000, min: 1024 },
           items: 2,
-          slidesToSlide: 1 // optional, default to 1.
+          slidesToSlide: 1 
         },
         tablet: {
           breakpoint: { max: 1024, min: 464 },
           items: 2,
-          slidesToSlide: 1 // optional, default to 1.
+          slidesToSlide: 1 
         },
         mobile: {
           breakpoint: { max: 464, min: 0 },
           items: 1,
-          slidesToSlide: 1 // optional, default to 1.
+          slidesToSlide: 1 
         }
       };
 
@@ -97,12 +98,19 @@ class Gallery extends Component {
     
 
     render(props) {
+        if(this.props.isLoading){
+            return(
+                <div className="text-center m-auto my-5">
+                    <Loading />
+                </div>
+            );
+        }
         return(
             <React.Fragment>
                 <Container fluid className="galleryContainerStyles">
                     <Row>
                         <Col xs="12">
-                            <Breadcrumb className="">
+                            <Breadcrumb className="breadcrumbStyles">
                                 <BreadcrumbItem>
                                     <Link to="/home">
                                         Home

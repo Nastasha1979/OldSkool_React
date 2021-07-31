@@ -1,6 +1,6 @@
 import * as ActionTypes from "./ActionTypes";
 
-export const movieDetail = (state = { isLoading: true, errMess: null, movieDetail: [] }, action) => {
+export const movieDetail = (state = { isLoading: false, errMess: null, movieDetail: [] }, action) => {
     switch(action.type) {
         case ActionTypes.GET_FILM_DETAILS: 
             return {...state, isLoading: false, errMess: null, movieDetail: action.payload };
