@@ -255,4 +255,22 @@ body {
   color: white;
   font-family: "Raleway";
 }
+
+.modalHead {
+  color: "white";
+}
+
+.submitTitle {
+  color: "white";
+  text-align: "center";
+}
+
+.submitTitle .row {
+  text-align: "center";
+}
+
+.reviewModalStyle label {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
 /*# sourceMappingURL=styles.css.map */

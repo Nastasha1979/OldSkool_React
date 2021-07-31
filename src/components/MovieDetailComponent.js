@@ -9,7 +9,7 @@ import { postWatchlist, deleteWatchlist, postReviews } from "../redux/ActionCrea
 
 
 
-//adding reviews not working. All looks good, but it's not outputting
+
 const mapStateToProps = state => {
     return {
         watchlist: state.watchlist,
@@ -111,13 +111,13 @@ class MovieDetailComponent extends Component {
     getReviews(movieDetail){
         const rev = this.props.reviews.reviews.filter(review => review.movieId === movieDetail.videoId).map(review => {
             return(
-                <div className="row mb-3 commentRender" key={review.id}>
+                <div className="row mb-4 commentRender" key={review.id}>
                     <Media left className="col-1 commentAvatar">
                         <Avatar round src={baseUrl + review.avatar} size={30}/>
                     </Media>
-                    <Media body className="col-11">
+                    <Media body className="col-11 mb-1">
                         <Media heading>
-                            <h6>{review.author}</h6>
+                            <h5>{review.author}</h5>
                             <StarRatings
                                 rating={review.rating}
                                 starRatedColor="yellow"
@@ -159,14 +159,15 @@ class MovieDetailComponent extends Component {
     }
 
     handleSubmit(movieId){
-        alert(`${this.state.author}, your review has been submitted for ${movieId}. You gave it ${this.state.rating} stars! Give us a few minutes to post it.`);
         this.props.postReviews(movieId, this.state.author, this.state.review, this.state.rating);
+        this.resetForm();
     }
 
     resetForm(){
         this.setState({
             author: "",
-            review: ""
+            review: "",
+            rating: 0
         });
     }
     
@@ -210,23 +211,32 @@ class MovieDetailComponent extends Component {
                             {<RenderDetail movieDetail={movieDetail} />}
                         </Container>
                         <Container fluid>
-                            <Row><Col><h2 style={{color: "white", textAlign: "center"}}>Member Reviews</h2></Col></Row>
+                            <Row className="my-4"><Col><h2 style={{color: "white"}}>Member Reviews</h2></Col></Row>
+                            <hr style={{color: "white"}} />
                             <Row>
                                 {this.getReviews(movieDetail)}
                             </Row>
-                            <Row>
-                                <Button onClick={this.toggleModal}>Submit Review</Button>
+                            <Row className="m-auto text-center mb-5">
+                                <Col xs="12">
+                                    <Button onClick={this.toggleModal} className="btn btn-dark">Submit Review</Button>
+                                </Col>
                             </Row>
                         </Container>
                     </Fade>
 
-                    <Modal isOpen={this.state.modalVisible} toggle={this.toggleModal}>
-                        <ModalHeader toggle={this.toggleModal}>
-                            Submit Review
+                    <Modal isOpen={this.state.modalVisible} toggle={this.toggleModal} className="reviewModalStyle">
+                        <ModalHeader toggle={this.toggleModal} style={{backgroundColor: "black"}} className="modalHead">
+                            <Row><h2 className="logoStyle">OldSkool</h2></Row>
+                            <Row><h3 style={{color: "white"}}>Submit Review</h3></Row>
                         </ModalHeader>
                         <ModalBody>
                             <Form>
                                 <FormGroup row>
+                                    <Label><strong>Author</strong></Label>
+                                    <Input name="author" id="author" value={this.state.author} type="text" onChange={this.handleChange}/>
+                                </FormGroup>
+                                <FormGroup row className="my-3">
+                                    <Label><strong>Your Rating</strong></Label>
                                     <StarRatings
                                         rating={this.state.rating}
                                         starRatedColor="orange"
@@ -237,21 +247,24 @@ class MovieDetailComponent extends Component {
                                     />
                                 </FormGroup>
                                 <FormGroup row>
-                                    <Label>Author</Label>
-                                    <Input name="author" id="author" value={this.state.author} type="text" onChange={this.handleChange}/>
-                                </FormGroup>
-                                <FormGroup row>
-                                    <Label>Review</Label>
+                                    <Label><strong>Your Review</strong></Label>
                                     <Input name="review" id="review" value={this.state.review} type="textarea" onChange={this.handleChange}/>
+                                </FormGroup>
+                                <FormGroup row className="text-center my-3">
+                                    <Col xs="6">
+                                        <Button onClick={this.toggleModal} color="secondary">Cancel</Button>
+                                    </Col>
+                                    <Col xs="6">
+                                    <Button type="Submit" color="primary" 
+                                        onClick={() => {
+                                            this.handleSubmit(movieDetail.videoId)
+                                            this.toggleModal()
+                                        }}>Submit</Button>
+                                    </Col>
                                 </FormGroup>
                             </Form>
                         </ModalBody>
-                        <Button onClick={this.toggleModal} className="btn btn-secondary">Cancel</Button>
-                        <Button type="Submit" className="btn btn-primary" 
-                            onClick={() => {
-                                this.handleSubmit(movieDetail.videoId)
-                                this.toggleModal()
-                            }}>Submit</Button>
+                        
                     </Modal>
                 </React.Fragment>
 

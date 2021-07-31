@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
+import { baseUrl } from "../shared/baseUrl";
 
 
 function HomeVideo() {
@@ -10,9 +11,9 @@ function HomeVideo() {
 
             <div>
                 {viewWidth >= 768 ?
-                    <video loop autoPlay muted src="/assets/HisGirlFridayTrim2.mp4"  className="myMovie" />
+                    <video loop autoPlay muted src={baseUrl + "/assets/HisGirlFridayTrim2.mp4"}  className="myMovie" />
                 :
-                    <img src="/assets/featuredImg.jpg" alt="His Girl Friday Still" className="myImg"/>
+                    <img src={baseUrl + "/assets/featuredImg.jpg"} alt="His Girl Friday Still" className="myImg"/>
                 }
             </div>
                    

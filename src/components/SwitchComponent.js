@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import Header from "./HeaderComponent";
 import HomeVideo from "./HomeVideoComponent"; 
 import About from "./AboutComponent";
@@ -74,8 +74,9 @@ class SwitchComponent extends Component {
         return(
             <React.Fragment>
                 <Header />
-                <Route exact path="/home" component={HomeVideo} />
                 <Switch>
+                    <Route exact path="/home" component={HomeVideo} />
+                    <Route exact path="/"><Redirect to="/home" /></Route>
                     <Route exact path="/gallery" render={() => <Gallery galleryData={this.props.galleryData} />} />
                     <Route exact path="/gallery/:movieId" component={movieData} />
                     <Route exact path="/gallery/detail/:videoId" component={moviePlay} />
