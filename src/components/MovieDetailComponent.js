@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Media, Container, Row, Col, Table, Breadcrumb, BreadcrumbItem, Fade } from "reactstrap";
+import { Media, Container, Row, Col, Table, Breadcrumb, BreadcrumbItem, Fade, Modal, ModalHeader, ModalBody, Button, Input, Label, Form, FormGroup } from "reactstrap";
 import Avatar from "react-avatar";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../shared/baseUrl";
 import { connect } from "react-redux";
-import { postWatchlist, deleteWatchlist } from "../redux/ActionCreators";
+import { postWatchlist, deleteWatchlist, postReviews } from "../redux/ActionCreators";
+
 
 
 //adding reviews not working. All looks good, but it's not outputting
@@ -16,7 +17,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = {
     postWatchlist: videoId => (postWatchlist(videoId)),
-    deleteWatchlist: videoId => (deleteWatchlist(videoId))
+    deleteWatchlist: videoId => (deleteWatchlist(videoId)),
+    postReviews: (movieId, author, review) => (postReviews(movieId, author, review))
 }
 
 function RenderDetail({movieDetail}) {
@@ -86,8 +88,13 @@ class MovieDetailComponent extends Component {
     constructor(props){
         super(props);
         this.state = {
-            fadeIn: true
+            fadeIn: true,
+            modalVisible: false,
+            author: "",
+            review: ""
         }
+        this.toggleModal = this.toggleModal.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     addToWatchlist(videoId) {
@@ -98,28 +105,56 @@ class MovieDetailComponent extends Component {
         this.props.deleteWatchlist(videoId);
     }
 
+    getReviews(movieDetail){
+        const rev = this.props.reviews.reviews.filter(review => review.movieId === movieDetail.videoId).map(review => {
+            return(
+                <div className="row mb-3 commentRender" key={review.id}>
+                    <Media left className="col-1 commentAvatar">
+                        <Avatar round src={baseUrl + review.avatar} size={30}/>
+                    </Media>
+                    <Media body className="col-11">
+                        <Media heading>
+                            <h6>{review.author}</h6>
+                        </Media>
+                        <h5>{review.review}</h5>                
+                    </Media>
+                    <hr />
+                </div>
+            );
+        });
+        return rev;
+    }
+
+    toggleModal(){
+        this.setState({
+            modalVisible: !this.state.modalVisible
+        });
+    }
+
+    handleChange(event){
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        this.setState({
+            [name]: value
+        });
+    }
+
+    handleSubmit(movieId){
+        alert(`${this.state.author}, your review has been submitted for ${movieId}. Give us a few minutes to post it.`);
+        this.props.postReviews(movieId, this.state.author, this.state.review);
+    }
+
+    resetForm(){
+        this.setState({
+            author: "",
+            review: ""
+        });
+    }
     
     render(props){
         const { movieDetail } = this.props;
-        const getReviews = () => {
-            const rev = this.props.reviews.reviews.filter(review => review.movieId === movieDetail.videoId).map(review => {
-                return(
-                    <div className="row mb-3 commentRender" key={review.id}>
-                        <Media left className="col-1 commentAvatar">
-                            <Avatar round src={baseUrl + review.avatar} size={30}/>
-                        </Media>
-                        <Media body className="col-11">
-                            <Media heading>
-                                <h6>{review.author}</h6>
-                            </Media>
-                            <h5>{review.review}</h5>                
-                        </Media>
-                        <hr />
-                    </div>
-                );
-            });
-            return rev;
-        }
+        
         if(movieDetail) {
             return(
                 <React.Fragment>
@@ -159,10 +194,37 @@ class MovieDetailComponent extends Component {
                         <Container fluid>
                             <Row><Col><h2 style={{color: "white", textAlign: "center"}}>Member Reviews</h2></Col></Row>
                             <Row>
-                                {getReviews}
+                                {this.getReviews(movieDetail)}
+                            </Row>
+                            <Row>
+                                <Button onClick={this.toggleModal}>Submit Review</Button>
                             </Row>
                         </Container>
                     </Fade>
+
+                    <Modal isOpen={this.state.modalVisible} toggle={this.toggleModal}>
+                        <ModalHeader toggle={this.toggleModal}>
+                            Submit Review
+                        </ModalHeader>
+                        <ModalBody>
+                            <Form>
+                                <FormGroup row>
+                                    <Label>Author</Label>
+                                    <Input name="author" id="author" value={this.state.author} type="text" onChange={this.handleChange}/>
+                                </FormGroup>
+                                <FormGroup row>
+                                    <Label>Review</Label>
+                                    <Input name="review" id="review" value={this.state.review} type="textarea" onChange={this.handleChange}/>
+                                </FormGroup>
+                            </Form>
+                        </ModalBody>
+                        <Button onClick={this.toggleModal} className="btn btn-secondary">Cancel</Button>
+                        <Button type="Submit" className="btn btn-primary" 
+                            onClick={() => {
+                                this.handleSubmit(movieDetail.videoId)
+                                this.toggleModal()
+                            }}>Submit</Button>
+                    </Modal>
                 </React.Fragment>
 
             );
