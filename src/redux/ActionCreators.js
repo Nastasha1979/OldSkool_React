@@ -262,12 +262,13 @@ export const addReviews = reviews => ({
 });
 
 
-export const postReviews = (movieId, author, review) => dispatch => {
+export const postReviews = (movieId, author, review, rating) => dispatch => {
 
     const newReview = {
         movieId: movieId,
         author: author,
         review: review,
+        rating: rating,
         date: new Date().toISOString(),
         avatar: "/assets/genericUser.png"
     };

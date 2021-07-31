@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Media, Container, Row, Col, Table, Breadcrumb, BreadcrumbItem, Fade, Modal, ModalHeader, ModalBody, Button, Input, Label, Form, FormGroup } from "reactstrap";
 import Avatar from "react-avatar";
+import StarRatings from "react-star-ratings";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../shared/baseUrl";
 import { connect } from "react-redux";
@@ -18,7 +19,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     postWatchlist: videoId => (postWatchlist(videoId)),
     deleteWatchlist: videoId => (deleteWatchlist(videoId)),
-    postReviews: (movieId, author, review) => (postReviews(movieId, author, review))
+    postReviews: (movieId, author, review, rating) => (postReviews(movieId, author, review, rating))
 }
 
 function RenderDetail({movieDetail}) {
@@ -91,10 +92,12 @@ class MovieDetailComponent extends Component {
             fadeIn: true,
             modalVisible: false,
             author: "",
-            review: ""
+            review: "",
+            rating: 0
         }
         this.toggleModal = this.toggleModal.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleRating = this.handleRating.bind(this);
     }
 
     addToWatchlist(videoId) {
@@ -115,6 +118,13 @@ class MovieDetailComponent extends Component {
                     <Media body className="col-11">
                         <Media heading>
                             <h6>{review.author}</h6>
+                            <StarRatings
+                                rating={review.rating}
+                                starRatedColor="yellow"
+                                numberOfStars={5}
+                                starSpacing="2px"
+                                starDimension="10px"
+                            />
                         </Media>
                         <h5>{review.review}</h5>                
                     </Media>
@@ -138,11 +148,19 @@ class MovieDetailComponent extends Component {
         this.setState({
             [name]: value
         });
+        event.preventDefault();
+    }
+
+    handleRating(newRating) {
+        this.setState({
+            rating: newRating
+        });
+        console.log(this.state.rating);
     }
 
     handleSubmit(movieId){
-        alert(`${this.state.author}, your review has been submitted for ${movieId}. Give us a few minutes to post it.`);
-        this.props.postReviews(movieId, this.state.author, this.state.review);
+        alert(`${this.state.author}, your review has been submitted for ${movieId}. You gave it ${this.state.rating} stars! Give us a few minutes to post it.`);
+        this.props.postReviews(movieId, this.state.author, this.state.review, this.state.rating);
     }
 
     resetForm(){
@@ -208,6 +226,16 @@ class MovieDetailComponent extends Component {
                         </ModalHeader>
                         <ModalBody>
                             <Form>
+                                <FormGroup row>
+                                    <StarRatings
+                                        rating={this.state.rating}
+                                        starRatedColor="orange"
+                                        starHoverColor="blue"
+                                        changeRating={this.handleRating}
+                                        numberOfStars={5}
+                                        starDimension="20px"
+                                    />
+                                </FormGroup>
                                 <FormGroup row>
                                     <Label>Author</Label>
                                     <Input name="author" id="author" value={this.state.author} type="text" onChange={this.handleChange}/>
