@@ -27,4 +27,3 @@ export const REVIEWS_ERROR = "REVIEWS_ERROR";
 export const ADD_REVIEWS = "ADD_REVIEWS";
 
 export const POST_CONTACT = "POST_CONTACT";
-export const GET_CONTACTS = "GET_CONTACTS";

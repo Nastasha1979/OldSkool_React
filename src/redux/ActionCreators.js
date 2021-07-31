@@ -315,7 +315,7 @@ export const postContact = (name, email, message) => dispatch => {
     };
     
 
-    return fetch(baseUrl + "reviews", {
+    return fetch(baseUrl + "contact", {
         method: "POST",
         body: JSON.stringify(newContact),
         headers: {
@@ -346,29 +346,3 @@ export const addContact = newContact => ({
     payload: newContact
 });
 
-export const fetchContacts = () => dispatch => {
-
-
-    return fetch(baseUrl + "contact")
-        .then(response => {
-            if(response.ok) {
-                return response;
-            } else {
-                const error = new Error(`Error ${response.status}: ${response.statusText}`);
-                error.response = response;
-                throw error;
-            }
-        },
-        error => {
-            const errMess = new Error(error.message);
-            throw errMess;
-        })
-        .then(response => response.json())
-        .then(contacts => dispatch(addContacts(contacts)))
-        .catch(error => console.log(error.message));
-};
-
-export const addContacts = contacts => ({
-    type: ActionTypes.GET_CONTACTS,
-    payload: contacts
-});
