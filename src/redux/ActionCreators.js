@@ -40,45 +40,6 @@ export const addGallery = gallery => ({
 });
 
 
-//Movie Details
-
-export const fetchMovieDetails = () => dispatch => {
-
-    dispatch(filmDetailsLoading());
-
-    return fetch(baseUrl + "movieDetail")
-        .then(response => {
-            if(response.ok) {
-                return response;
-            } else {
-                const error = new Error(`Error ${response.status}: ${response.statusText}`);
-                error.response = response;
-                throw error;
-            }
-        },
-        error => {
-            const errMess = new Error(error.message);
-            throw errMess;
-        })
-        .then(response => response.json())
-        .then(details => dispatch(addMovieDetails(details)))
-        .catch(error => dispatch(filmDetailsFailed(error.message)));
-};
-
-export const filmDetailsLoading = () => ({
-    type: ActionTypes.FILMS_DETAILS_LOADING
-});
-
-export const filmDetailsFailed = errMess => ({
-    type: ActionTypes.FILMS_DETAILS_ERROR,
-    payload: errMess
-});
-
-export const addMovieDetails = details => ({
-    type: ActionTypes.GET_FILM_DETAILS,
-    payload: details
-});
-
 //movie comments
 
 export const fetchComments = () => dispatch => {

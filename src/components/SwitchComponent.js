@@ -11,12 +11,11 @@ import Gallery from "./GalleryComponent";
 import WatchList from "./WatchlistComponent";
 import Loading from "./LoadingComponent";
 import { connect } from "react-redux";
-import { fetchGallery, fetchMovieDetails, fetchComments, fetchEvents, postComment, fetchReviews } from "../redux/ActionCreators";
+import { fetchGallery, fetchComments, fetchEvents, postComment, fetchReviews } from "../redux/ActionCreators";
 
 const mapStateToProps = state => {
     return{
         galleryData: state.galleryData,
-        movieDetail: state.movieDetail,
         eventsData: state.eventsData,
         comments: state.comments,
         reviews: state.reviews,
@@ -25,7 +24,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     fetchGallery: () => (fetchGallery()),
-    fetchMovieDetail: () => (fetchMovieDetails()),
     fetchComments: () => (fetchComments()),
     fetchEvents: () => (fetchEvents()),
     fetchReviews: () => (fetchReviews()),
@@ -40,7 +38,6 @@ class SwitchComponent extends Component {
 
     componentDidMount() {
         this.props.fetchGallery();
-        this.props.fetchMovieDetail();
         this.props.fetchComments();
         this.props.fetchEvents();
         this.props.fetchReviews();
@@ -51,8 +48,8 @@ class SwitchComponent extends Component {
         const movieData = ({match}) => {
             return(
                 <MovieDetailComponent 
-                    movieDetail={this.props.movieDetail.movieDetail.filter(movieD => movieD.id === +match.params.movieId)[0]} 
-                    isLoading={this.props.movieDetail.isLoading}
+                    movieDetail={this.props.galleryData.galleryData.filter(movieD => movieD.id === +match.params.movieId)[0]} 
+                    isLoading={this.props.galleryData.isLoading}
                 />
             );
         };
@@ -60,10 +57,10 @@ class SwitchComponent extends Component {
         const moviePlay = ({match}) => {
             return(
                 <VideoPlayer 
-                    movieData={this.props.movieDetail.movieDetail.filter(movieD => movieD.videoId === +match.params.videoId)[0]} 
+                    movieData={this.props.galleryData.galleryData.filter(movieD => movieD.videoId === +match.params.videoId)[0]} 
                     comments={this.props.comments.comments.filter(comment => comment.movieId === +match.params.videoId)}
                     postComment={this.props.postComment}
-                    isLoading={this.props.movieDetail.isLoading}
+                    isLoading={this.props.galleryData.isLoading}
                 />
             );
         };

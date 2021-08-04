@@ -4,7 +4,6 @@ import logger from "redux-logger";
 import { persistStore, persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 import { galleryData } from "./gallery";
-import { movieDetail } from "./movieDetail";
 import { comments } from "./comments";
 import { eventsData } from "./events";
 import { watchlist } from "./watchlist";
@@ -22,7 +21,6 @@ export const ConfigureStore = () => {
     const store = createStore(
         persistCombineReducers(config, {
             galleryData,
-            movieDetail,
             comments,
             eventsData,
             watchlist,

@@ -8,7 +8,7 @@ import { deleteWatchlist } from "../redux/ActionCreators";
 
 const mapStateToProps = state => {
     return {
-        movieDetail: state.movieDetail,
+        galleryData: state.galleryData,
         watchlist: state.watchlist
     };
 };
@@ -21,8 +21,8 @@ function GetWatchlist(props) {
     if(props.watchlist.length != 0){
         const { watchlist } = props;
         
-        const {movieDetail} = props;
-        const renderWatchlist = movieDetail.movieDetail.filter(movieD => watchlist.includes(movieD.videoId)).map(watchlist => {
+        const {galleryData} = props;
+        const renderWatchlist = galleryData.galleryData.filter(movieD => watchlist.includes(movieD.videoId)).map(watchlist => {
             return(
                 
                 <Col lg="2" md="3" xs="6" key={watchlist.videoId}>
@@ -36,7 +36,7 @@ function GetWatchlist(props) {
                                     <CardTitle>{watchlist.title}</CardTitle>
                                     <CardSubtitle>{watchlist.year}</CardSubtitle>
                                 </Link>
-                                <i className="fa fa-minus-square fa-2x text-center" style={{color: "red" }} onClick={() => props.remove(watchlist.videoId)} />
+                                <i className="fa fa-minus-square fa-2x text-center" style={{color: "red" }} onClick={() => props.remove(watchlist.videoId)} /> Remove
                             </CardBody>
                         </Card>
                     
@@ -67,7 +67,7 @@ class WatchList extends Component {
                     </Row>
                     <Row>
                         <GetWatchlist 
-                            movieDetail={this.props.movieDetail} 
+                            galleryData={this.props.galleryData} 
                             watchlist={this.props.watchlist} 
                             remove={this.props.deleteWatchlist}    
                         />
