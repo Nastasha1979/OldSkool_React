@@ -307,3 +307,38 @@ export const addContact = newContact => ({
     payload: newContact
 });
 
+
+
+//USERS
+
+export const fetchUsers = () => dispatch => {
+
+    return fetch(baseUrl + "users")
+        .then(response => {
+            if(response.ok) {
+                return response;
+            } else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
+        error => {
+            const errMess = new Error(error.message);
+            throw errMess;
+        })
+        .then(response => response.json())
+        .then(users => dispatch(addUsers(users)))
+        .catch(error => errorUsers(error));
+};
+
+
+export const addUsers = users => ({
+    type: ActionTypes.GET_USERS,
+    payload: users
+});
+
+export const errorUsers = errMess => ({
+    type: ActionTypes.USER_ERROR,
+    payload: errMess
+});

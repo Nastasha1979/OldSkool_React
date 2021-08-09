@@ -205,6 +205,17 @@ class Header extends Component {
                                     />
                                     <FormFeedback>{errors.password}</FormFeedback>
                                 </FormGroup>
+                                <form action="/upload" method="post" enctype="multipart/form-data" className="text-center">
+                                    <FormGroup className="my-3">
+                                        <FormGroup className="my-2">
+                                            <label htmlFor="myProfileImage" className="pr-5">Select your profile Image: </label>
+                                        </FormGroup>
+                                        <input type="file" name="myProfileImage" className="btn btn-outline-secondary ml-5"/><br/>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Button type="submit" className="btn btn-dark">Upload Image</Button>
+                                    </FormGroup>
+                                </form>
                                 <FormGroup check className="text-right">
                                     <Label check>
                                     <Input type="checkbox"

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { postContact } from "../redux/ActionCreators";
 
+
 const mapDispatchToProps = {
     postContact: (name, email, message) => (postContact(name, email, message))
 }
@@ -78,7 +79,7 @@ class About extends Component {
                         </Col>
                         <Col xs="6">
                             <ul className="list-unstyled text-center termsStuff">
-                                <li><a role="button">Privacy</a></li>
+                                <li><Link role="button" to="/profile">Profile</Link></li>
                                 <span> | </span>
                                 <li><a role="button">Terms</a></li>
                                 <span> | </span>

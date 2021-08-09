@@ -9,9 +9,10 @@ import Events from "./EventsHomeComponent";
 import EventDetail from "./EventDetailComponent";
 import Gallery from "./GalleryComponent";
 import WatchList from "./WatchlistComponent";
+import Profile from "./ProfileComponent";
 import Loading from "./LoadingComponent";
 import { connect } from "react-redux";
-import { fetchGallery, fetchComments, fetchEvents, postComment, fetchReviews } from "../redux/ActionCreators";
+import { fetchGallery, fetchComments, fetchEvents, postComment, fetchReviews, fetchUsers } from "../redux/ActionCreators";
 
 const mapStateToProps = state => {
     return{
@@ -19,6 +20,7 @@ const mapStateToProps = state => {
         eventsData: state.eventsData,
         comments: state.comments,
         reviews: state.reviews,
+        users: state.users
     }
 }
 
@@ -27,6 +29,7 @@ const mapDispatchToProps = {
     fetchComments: () => (fetchComments()),
     fetchEvents: () => (fetchEvents()),
     fetchReviews: () => (fetchReviews()),
+    fetchUsers: () => (fetchUsers()),
     postComment: (movieId, author, comment) => (postComment(movieId, author, comment))
 }
 
@@ -41,6 +44,7 @@ class SwitchComponent extends Component {
         this.props.fetchComments();
         this.props.fetchEvents();
         this.props.fetchReviews();
+        this.props.fetchUsers();
     }
 
 
@@ -89,6 +93,7 @@ class SwitchComponent extends Component {
                     <Route exact path="/events" render={() => <Events eventsData={this.props.eventsData.eventsData} isLoading={this.props.eventsData.isLoading}/>} />
                     <Route exact path="/events/:eventId" component={eventGo} />
                     <Route exact path="/watchlist" component={WatchList} />
+                    <Route exact path="/profile" component={Profile} users={this.props.users}/>
                 </Switch>
                 {/* <Footer /> */}
             </React.Fragment>
